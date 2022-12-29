@@ -6,7 +6,7 @@
 
 		<center>
 			<div class="col-md-2" style="float: left; margin: 1px 2%">
-				<!-- <categorys v-on:CheckCat="checkTheCat"/> -->
+				<categories-view @checkCat="checkCategory" />
 			</div>
 			<div class="col-md-3"></div>
 
@@ -16,12 +16,14 @@
 						<div class="row">
 							<!-- <transition-group name="fade" tag="div" class="row"> -->
 
-							<div class="card col-md-4" v-for="item in items" :key="item.id">
+							<div v-for="item in items" :key="item.id" class="card col-md-4">
 								<img class="card-img-top" :src="item.imgSrc" :alt="item.name" />
 								<div class="card-body">
 									<h6>Price: ${{ item.price }}</h6>
 
-									<h5 class="card-title vx">{{ item.name }}</h5>
+									<router-link :to="{ path: '/item', query: { ID: item.id } }">
+										<h5 class="card-title vx">{{ maxName(item.name) }}</h5>
+									</router-link>
 
 									<button class="btn btn-danger">
 										<small>Remove From Cart</small>
@@ -81,13 +83,19 @@
 </template>
 
 <script>
+import CategoriesView from "./Categories.vue";
 export default {
 	name: "MainView",
+	components: {
+		CategoriesView,
+	},
+	filters: {},
 	data() {
 		return {
 			items: [],
 			pageArray: [],
 			pageSelected: 3,
+			checkedCat: [],
 		};
 	},
 	mounted() {
@@ -113,7 +121,7 @@ export default {
 			(this.items = [
 				{
 					id: "12",
-					name: "Cat i Phone 11 Pro s",
+					name: "i Phone 11 Pro s",
 					desc: "iphoe 11 pro back",
 					price: "599",
 					imgSrc:
@@ -121,7 +129,7 @@ export default {
 				},
 				{
 					id: "14",
-					name: "Cat Huawei s",
+					name: "Huawei s hewr",
 					desc: "Huawei Huawei",
 					price: "1000",
 					imgSrc:
@@ -129,54 +137,58 @@ export default {
 				},
 				{
 					id: "16",
-					name: "Cat nike shirt s",
-					desc: "red nike shirt",
+					name: "Nike shirt s",
+					desc: "red Nike shirt",
 					price: "12",
 					imgSrc:
 						"https://www.marni.com/dw/image/v2/AAPK_PRD/on/demandware.static/-/Library-Sites-marni-shared/default/dwc934330e/Veja%20x%20Marni/01_FLYOUT_VEJA_300_225.jpg?sw=1500",
 				},
 				{
 					id: "18",
-					name: "Cat temperland shirt",
+					name: "Timberland shirt",
 					desc: "black templerland shirt",
 					price: "20",
 					imgSrc:
-						"https://lp2.hm.com/hmgoepprod?set=source[/53/50/5350856a7ed6b4ed6617418a0fbbcef78cc6e6b2.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]",
+						"https://lp2.hm.com/hmgoepprod?set=source[/53/50/5350856a7ed6b4ed6617418a0fbbcef78cc6e6b2.jpg],origin[dam],gory[],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]",
 				},
 				{
 					id: "20",
-					name: "Cat addidas shirt",
-					desc: "addidas wight shirt",
+					name: "Addidas shirt",
+					desc: "Addidas wight shirt",
 					price: "13",
 					imgSrc:
 						"https://cache.net-a-porter.com/images/products/1009804/1009804_in_2000_q80.jpg",
 				},
 				{
 					id: "24",
-					name: "Cat nike shose",
-					desc: "black nike shose",
+					name: "Nike shoes",
+					desc: "black Nike shoes",
 					price: "50",
 					imgSrc:
 						"https://image.cnbcfm.com/api/v1/image/105680013-1547583426762nike1.jpg?v=1547583682",
 				},
 				{
 					id: "26",
-					name: "Cat nikon Camera",
-					desc: "nikon camera description",
+					name: "Nikon Camera",
+					desc: "Nikon camera description",
 					price: "2400",
 					imgSrc:
 						"https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRaTX9QMs46bmzI8t4I6LJq5qeFdWFPsYsF7DvLY48ydRVUDSsyAG39YTEcBK6l&usqp=CAc",
 				},
 				{
 					id: "28",
-					name: "Cat Samsong Watch",
-					desc: "samsong Glaxey Watch",
+					name: "Samsung Watch",
+					desc: "Samsung Glaxey Watch",
 					price: "5",
 					imgSrc:
 						"https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLR0-Y4VqlhggjclgAfxSXaNEWKDc311lw9480NKAt727IplX1XqHqbVFOcsgfdg4LNhhwswRAFKp0&usqp=CAc",
 				},
 			]),
 				console.log("page num", this.pageSelected);
+		},
+		maxName(val) {
+			if (val.length < 12) return val;
+			return val.slice(0, 12) + "...";
 		},
 		pagination() {
 			this.pageArray = [];
@@ -215,6 +227,81 @@ export default {
 				this.getProductData();
 				console.log("n", this.pageSelected);
 			}
+		},
+		checkCategory(cat) {
+			console.log("MainView cat id", cat);
+			if (this.checkedCat.indexOf(cat) === -1) {
+				this.checkedCat.push(cat);
+			} else {
+				this.checkedCat = this.checkedCat.filter((e) => e !== cat);
+			}
+			console.log("cat id list", this.checkedCat);
+			this.items = [
+				{
+					id: "12",
+					name: "Cat i Phone 11 Pro s",
+					desc: "iphoe 11 pro back",
+					price: "599",
+					imgSrc:
+						"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone11-black-select-2019?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1566956144418",
+				},
+				{
+					id: "14",
+					name: "Cat Huawei s",
+					desc: "Huawei Huawei",
+					price: "1000",
+					imgSrc:
+						"https://priceintanzania.com/wp-content/uploads/2020/09/Huawei-Enjoy-20-5G.jpg",
+				},
+				{
+					id: "16",
+					name: "Cat Nike shirt s",
+					desc: "red Nike shirt",
+					price: "12",
+					imgSrc:
+						"https://www.marni.com/dw/image/v2/AAPK_PRD/on/demandware.static/-/Library-Sites-marni-shared/default/dwc934330e/Veja%20x%20Marni/01_FLYOUT_VEJA_300_225.jpg?sw=1500",
+				},
+				{
+					id: "18",
+					name: "Cat Timberland shirt",
+					desc: "black templerland shirt",
+					price: "20",
+					imgSrc:
+						"https://lp2.hm.com/hmgoepprod?set=source[/53/50/5350856a7ed6b4ed6617418a0fbbcef78cc6e6b2.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]",
+				},
+				{
+					id: "20",
+					name: "Cat Addidas shirt",
+					desc: "Addidas wight shirt",
+					price: "13",
+					imgSrc:
+						"https://cache.net-a-porter.com/images/products/1009804/1009804_in_2000_q80.jpg",
+				},
+				{
+					id: "24",
+					name: "Cat Nike shoes",
+					desc: "black Nike shoes",
+					price: "50",
+					imgSrc:
+						"https://image.cnbcfm.com/api/v1/image/105680013-1547583426762nike1.jpg?v=1547583682",
+				},
+				{
+					id: "26",
+					name: "Cat Nikon Camera",
+					desc: "Nikon camera description",
+					price: "2400",
+					imgSrc:
+						"https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRaTX9QMs46bmzI8t4I6LJq5qeFdWFPsYsF7DvLY48ydRVUDSsyAG39YTEcBK6l&usqp=CAc",
+				},
+				{
+					id: "28",
+					name: "Cat Samsung Watch",
+					desc: "Samsung Glaxey Watch",
+					price: "5",
+					imgSrc:
+						"https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLR0-Y4VqlhggjclgAfxSXaNEWKDc311lw9480NKAt727IplX1XqHqbVFOcsgfdg4LNhhwswRAFKp0&usqp=CAc",
+				},
+			];
 		},
 	},
 };
