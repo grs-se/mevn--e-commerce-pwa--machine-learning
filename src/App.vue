@@ -1,15 +1,17 @@
 <template>
 	<div id="app">
-		<h5>app component</h5>
+		<header-view />
 		<router-view />
 	</div>
 </template>
 
 <script>
+import HeaderView from "./components/Header/Header.vue";
 // import { mapGetters, mapActions } from "vuex";
 export default {
 	name: "App",
-	computed: {
+	components: {
+		HeaderView,
 		// ...mapGetters(["AllProducts"]),
 	},
 	created() {

@@ -57,7 +57,7 @@
 										:class="
 											PageSelected === page ? 'page-link active' : 'page-link'
 										"
-										@click="changePage(page)"
+										@click="ChangePage(page)"
 									>
 										{{ page }}
 									</button>
@@ -147,7 +147,7 @@ export default {
 			console.log("Pagination", this.PageArray);
 			this.getProdData();
 		},
-		changePage(page) {
+		ChangePage(page) {
 			this.GetProdByPageNum(page);
 			this.PageSelected = page;
 			this.$router.push({
@@ -165,14 +165,14 @@ export default {
 			}
 			if (con == false && this.PageSelected !== 1) {
 				this.PageSelected = this.PageSelected - 1;
-				this.changePage(this.PageSelected);
+				this.ChangePage(this.PageSelected);
 				this.Pagination();
 				this.getProdData();
 				console.log("n", this.PageSelected);
 			}
 			if (con == true) {
 				this.PageSelected = this.PageSelected + 1;
-				this.changePage(this.PageSelected);
+				this.ChangePage(this.PageSelected);
 				this.Pagination();
 				this.getProdData();
 				console.log("n ", this.PageSelected);

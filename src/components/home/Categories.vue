@@ -8,7 +8,7 @@
 						:id="item.id"
 						type="checkbox"
 						class="custom-control-input"
-						@change="checkCat(item.id)"
+						@change="CheckCategory(item.id)"
 					/>
 					<label class="custom-control-label" :for="item.id">{{
 						item.name
@@ -23,29 +23,29 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
 	name: "CategoriesView",
-	emits: ["checkCat"],
+	emits: ["CheckCategory"],
 	data() {
 		return {
 			CategoriesList: [],
 		};
 	},
 	computed: {
-		...mapGetters(["allCategories"]),
+		...mapGetters(["AllCategories"]),
 	},
 	created() {
 		this.GetCategories();
 	},
 	mounted() {
-		this.CategoriesList = this.allCategories;
+		this.CategoriesList = this.AllCategories;
 	},
 
 	methods: {
 		// vuex
 		...mapActions(["GetCategories"]),
 		// vuex end
-		checkCat(cat) {
+		CheckCategory(cat) {
 			console.log("cat id", cat);
-			this.$emit("checkCat", cat);
+			this.$emit("CheckCategory", cat);
 		},
 	},
 };
