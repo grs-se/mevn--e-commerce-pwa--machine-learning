@@ -40,7 +40,7 @@ const actions = {
 				localStorage.setItem("Cart", JSON.stringify(CartData));
 			} else {
 				CartData.push(newItem);
-				localStorage.setItem("Cart");
+				localStorage.setItem("Cart", JSON.stringify(CartData));
 			}
 			commit("SetNew", CartData);
 		} else {
@@ -52,8 +52,8 @@ const actions = {
 	async ChangeItemQuantity({ commit }, data) {
 		if (localStorage.getItem("Cart")) {
 			let CartData = JSON.parse(localStorage.getItem("Cart"));
-			let itemData = CartData.findIndex((obj) => obj.id == data.ID);
-			if (itemData !== -1) {
+			let ItemData = CartData.findIndex((obj) => obj.id == data.ID);
+			if (ItemData !== -1) {
 				let objIndex = CartData.findIndex((obj) => obj.id == data.ID);
 				CartData[objIndex].quantity = data.quantity;
 				localStorage.setItem("Cart", JSON.stringify(CartData));
@@ -64,8 +64,8 @@ const actions = {
 	async RemoveItemFromCart({ commit }, ID) {
 		if (localStorage.getItem("Cart")) {
 			let CartData = JSON.parse(localStorage.getItem("Cart"));
-			let itemData = CartData.findIndex((obj) => obj.id == ID);
-			if (itemData !== -1) {
+			let ItemData = CartData.findIndex((obj) => obj.id == ID);
+			if (ItemData !== -1) {
 				CartData = CartData.filter((x) => {
 					return x.id !== ID;
 				});
@@ -80,10 +80,10 @@ const actions = {
 			let ItemData = CartData.findIndex((obj) => obj.id == ID);
 
 			let IsInCart;
-			if (ItemData == -1) {
+			if (ItemData !== -1) {
 				IsInCart = true;
 			}
-			if (ItemData !== -1) {
+			if (ItemData == -1) {
 				IsInCart = false;
 			}
 			commit("non");

@@ -7,7 +7,7 @@
 
 <script>
 import HeaderView from "./components/Header/Header.vue";
-// import { mapGetters, mapActions } from "vuex";
+import { mapActions } from "vuex";
 export default {
 	name: "App",
 	components: {
@@ -16,11 +16,11 @@ export default {
 	},
 	created() {
 		// console.log("app vue Getters", this.AllProducts);
-		// this.GetProducts();
+		this.GetCartItem();
 	},
-	// methods: {
-	// 	...mapActions(["GetProducts"]),
-	// },
+	methods: {
+		...mapActions(["GetCartItem"]),
+	},
 };
 </script>
 

@@ -54,11 +54,11 @@
 </template>
 
 <script>
-import Cart from "../Cart/Cart";
+// import Cart from "../Cart/Cart";
 
 export default {
 	name: "HeaderView",
-	components: { Cart },
+	// components: { Cart },
 	data() {
 		return {
 			isActive: false,

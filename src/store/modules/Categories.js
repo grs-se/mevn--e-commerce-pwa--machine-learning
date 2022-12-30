@@ -17,7 +17,7 @@ const actions = {
 			{ id: 55, name: "shoes C" },
 			{ id: 66, name: "pants C" },
 		];
-		commit("setCategories", newCatData);
+		commit("GetCategories", newCatData);
 	},
 	async GetCatById({ commit }, ID) {
 		let item = state.CategoriesList.filter((x) => x.id == ID);
@@ -28,7 +28,7 @@ const actions = {
 };
 
 const mutations = {
-	setCategories: (state, categories) => (state.CategoriesList = categories),
+	GetCategories: (state, categories) => (state.CategoriesList = categories),
 	non: (state) => (state.non = ""),
 };
 

@@ -13,10 +13,14 @@
 			<div class="col-md-9">
 				<div class="container">
 					<div class="card-group">
-						<div class="row">
+						<div class="row" v-if="isLoaded">
 							<!-- <transition-group name="fade" tag="div" class="row"> -->
 
-							<div v-for="item in items" :key="item.id" class="card col-md-4">
+							<div
+								v-for="(item, index) in items"
+								:key="item.id"
+								class="card col-md-4"
+							>
 								<img class="card-img-top" :src="item.imgSrc" :alt="item.name" />
 								<div class="card-body">
 									<h6>Price: ${{ item.price }}</h6>
@@ -25,10 +29,20 @@
 										<h5 class="card-title vx">{{ MaxName(item.name) }}</h5>
 									</router-link>
 
-									<button class="btn btn-danger">
+									<button
+										v-if="item.isInCart"
+										class="btn btn-danger"
+										@click="RemoveFromCart(item.id, index)"
+									>
 										<small>Remove From Cart</small>
 									</button>
-									<button class="btn btn-primary">Add To Cart</button>
+									<button
+										v-else
+										class="btn btn-primary"
+										@click="AddToCart(item.id, index)"
+									>
+										Add To Cart
+									</button>
 								</div>
 							</div>
 						</div>
@@ -87,7 +101,7 @@ import CategoriesView from "./Categories.vue";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
-	name: "MainView",
+	name: "Main",
 	components: {
 		CategoriesView,
 	},
@@ -97,6 +111,7 @@ export default {
 			PageArray: [],
 			PageSelected: 3,
 			CheckedCat: [],
+			isLoaded: true,
 		};
 	},
 	computed: {
@@ -125,14 +140,43 @@ export default {
 	},
 	methods: {
 		// vuex
-		...mapActions(["GetProducts", "GetProdByPageNum"]),
+		...mapActions([
+			"GetProducts",
+			"GetProdByPageNum",
+			"CheckIfInCart",
+			"SetNewCartItem",
+			"RemoveItemFromCart",
+		]),
 		// vuex end
 		getProdData() {
-			this.items = this.AllProducts;
-			console.log("main vuex", this.AllProducts);
-			const fix = this.items.filter((e) => e.id !== "12");
-			console.log("fix", fix);
-			console.log("page num", this.PageSelected);
+			this.isLoaded = false;
+			let data = [];
+			data = this.AllProducts;
+			for (let index = 0; index < data.length; index++) {
+				const ElId = data[index].id;
+				this.CheckIfInCart(ElId).then((res) => {
+					console.log("d", res);
+					let objIndex = data.findIndex((obj) => obj.id == ElId);
+					data[objIndex].isInCart = res;
+					this.isLoaded = true;
+				});
+			}
+			console.log("data", data);
+			this.items = data;
+		},
+		AddToCart(id, index) {
+			this.isLoaded = false;
+			this.items[index].isInCart = true;
+			this.isLoaded = true;
+			this.SetNewCartItem(id);
+			this.getProdData();
+		},
+		RemoveFromCart(id, index) {
+			this.isLoaded = false;
+			this.items[index].isInCart = false;
+			this.isLoaded = true;
+			this.RemoveItemFromCart(id);
+			this.getProdData();
 		},
 		MaxName(val) {
 			if (val.length < 12) return val;

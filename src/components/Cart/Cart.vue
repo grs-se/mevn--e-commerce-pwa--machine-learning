@@ -36,9 +36,9 @@
 							</td>
 							<td class="col-sm-2 col-md-2" style="text-align: center">
 								<input
+									id="exampleInputEmail1"
 									type="number"
 									class="form-control"
-									id="exampleInputEmail1"
 								/>
 							</td>
 							<td class="col-sm-1 col-md-1 text-center">
