@@ -1,18 +1,24 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-const MainView = () => import("@/components/Home/Main.vue");
-const SpecificItem = () => import("@/components/SpecificItem/SpecificItem.vue");
+const Main = () => import("./components/Home/Main.vue");
+const SpecificItem = () => import("./components/SpecificItem/SpecificItem.vue");
+const Cart = () => import("./components/Cart/Cart.vue");
 
 const routes = [
 	{
 		path: "/main",
 		name: "Main",
-		component: MainView,
+		component: Main,
 	},
 	{
 		path: "/item",
 		name: "SpecificItem",
 		component: SpecificItem,
+	},
+	{
+		path: "/cart",
+		name: "Cart",
+		component: Cart,
 	},
 ];
 
