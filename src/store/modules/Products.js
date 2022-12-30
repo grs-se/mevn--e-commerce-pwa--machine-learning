@@ -65,8 +65,8 @@ const state = {
 				"https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLR0-Y4VqlhggjclgAfxSXaNEWKDc311lw9480NKAt727IplX1XqHqbVFOcsgfdg4LNhhwswRAFKp0&usqp=CAc",
 		},
 	],
-	ProdListByPageNum: [],
-	none: "",
+	// ProdListByPageNum: [],
+	non: "",
 };
 
 const getters = {
@@ -145,15 +145,15 @@ const actions = {
 	},
 	async GetProdById({ commit }, ID) {
 		let itemINDEX = state.ProductsList.filter((x) => x.id == ID);
-		commit("none");
+		commit("non");
 		return itemINDEX;
 	},
-	async GetProdByPageNumber({ commit }, pageNum) {
+	async GetProdByPageNum({ commit }, pageNum) {
 		console.log("pn", pageNum);
 		const NewProdDataArr = [
 			{
 				id: "12",
-				name: "XX i Phone 11 Pro s",
+				name: "PN i Phone 11 Pro s",
 				desc: "iphoe 11 pro back",
 				price: "599",
 				imgSrc:
@@ -161,7 +161,7 @@ const actions = {
 			},
 			{
 				id: "14",
-				name: "XX Huawei s hewr",
+				name: "PN Huawei s hewr",
 				desc: "Huawei Huawei",
 				price: "1000",
 				imgSrc:
@@ -169,7 +169,7 @@ const actions = {
 			},
 			{
 				id: "16",
-				name: "XX Nike shirt s",
+				name: "PN Nike shirt s",
 				desc: "red Nike shirt",
 				price: "12",
 				imgSrc:
@@ -177,7 +177,7 @@ const actions = {
 			},
 			{
 				id: "18",
-				name: "XX Timberland shirt",
+				name: "PN Timberland shirt",
 				desc: "black templerland shirt",
 				price: "20",
 				imgSrc:
@@ -185,7 +185,7 @@ const actions = {
 			},
 			{
 				id: "20",
-				name: "XX Addidas shirt",
+				name: "PN Addidas shirt",
 				desc: "Addidas wight shirt",
 				price: "13",
 				imgSrc:
@@ -193,7 +193,7 @@ const actions = {
 			},
 			{
 				id: "24",
-				name: "XX Nike shoes",
+				name: "PN Nike shoes",
 				desc: "black Nike shoes",
 				price: "50",
 				imgSrc:
@@ -201,7 +201,7 @@ const actions = {
 			},
 			{
 				id: "26",
-				name: "XX Nikon Camera",
+				name: "PN Nikon Camera",
 				desc: "Nikon camera description",
 				price: "2400",
 				imgSrc:
@@ -209,7 +209,7 @@ const actions = {
 			},
 			{
 				id: "28",
-				name: "XX Samsung Watch",
+				name: "PN Samsung Watch",
 				desc: "Samsung Glaxey Watch",
 				price: "5",
 				imgSrc:
@@ -224,11 +224,11 @@ const mutations = {
 	// work with Products List
 	setProducts: (state, newProdData) => (state.ProductsList = newProdData),
 	// set prod by page num
-	SetProdByPageNumber: (state, NewProdDataArr) =>
-		(state.ProdListByPageNum = NewProdDataArr),
+	SetProdByPageNum: (state, NewProdDataArr) =>
+		(state.ProductsList = NewProdDataArr),
 
 	// does not do anything
-	none: (state) => (state.none = ""),
+	non: (state) => (state.non = ""),
 };
 
 export default {

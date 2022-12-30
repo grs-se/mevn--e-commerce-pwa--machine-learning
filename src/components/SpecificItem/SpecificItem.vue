@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
 	name: "SpecificItem",
 	data() {
@@ -38,24 +40,40 @@ export default {
 		};
 	},
 	created() {
-		let prodId = this.$route.query.ID;
-		let data = {
-			id: "12",
-			name: "i Phone 11 Pro s",
-			desc: "iphoe 11 pro back",
-			price: "599",
-			catName: "phone",
-			imgSrc:
-				"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone11-black-select-2019?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1566956144418",
-		};
-		this.resultItems.id = prodId;
-		this.resultItems.name = data.name;
-		this.resultItems.desc = data.desc;
-		this.resultItems.price = data.price;
-		this.resultItems.imgSrc = data.imgSrc;
-		this.resultItems.catName = data.catName;
+		// let prodId = this.$route.query.ID;
+		// let data = {
+		// 	id: "12",
+		// 	name: "i Phone 11 Pro s",
+		// 	desc: "iphoe 11 pro back",
+		// 	price: "599",
+		// 	catName: "phone",
+		// 	imgSrc:
+		// 		"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone11-black-select-2019?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1566956144418",
+		// };
+		// this.resultItems.id = prodId;
+		// this.resultItems.name = data.name;
+		// this.resultItems.desc = data.desc;
+		// this.resultItems.price = data.price;
+		// this.resultItems.imgSrc = data.imgSrc;
+		// this.resultItems.catName = data.catName;
+		// console.log("item.id", prodId, "item data", this.resultItems);
+		this.GetRouteData();
+	},
+	methods: {
+		...mapActions(["GetProdById"]),
 
-		console.log("item.id", prodId, "item data", this.resultItems);
+		async GetRouteData() {
+			let ProdId = this.$route.query.ID;
+			await this.GetProdById(ProdId).then((res) => {
+				console.log("specific item", res);
+				this.resultItems.id = ProdId;
+				this.resultItems.name = res[0].name;
+				this.resultItems.desc = res[0].desc;
+				this.resultItems.price = res[0].price;
+				this.resultItems.imgSrc = res[0].imgSrc;
+				this.resultItems.catName = res[0].catName;
+			});
+		},
 	},
 };
 </script>
