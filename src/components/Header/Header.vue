@@ -12,11 +12,18 @@
 				aria-controls="navbarSupportedContent"
 				aria-expanded="false"
 				aria-label="Toggle navigation"
+				@click="isActive = !isActive"
 			>
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
-			<div class="collapse navbar-collapse show">
+			<div
+				:class="[
+					isActive
+						? 'collapse navbar-collapse show'
+						: 'collapse navbar-collapse',
+				]"
+			>
 				<ul class="navbar-nav mr-auto"></ul>
 				<form class="form-inline my-2 my-lg-0">
 					<!-- search start -->
@@ -30,7 +37,11 @@
 						Logout
 					</button>
 
-					<button class="btn btn-outline-warning my-2 my-sm-2 m-2">Cart</button>
+					<router-link to="/cart">
+						<button class="btn btn-outline-warning my-2 my-sm-2 m-2">
+							Cart
+						</button>
+					</router-link>
 
 					<button class="btn btn-outline-danger my-2 my-sm-2 m-2">Admin</button>
 
@@ -43,8 +54,17 @@
 </template>
 
 <script>
+import Cart from "../Cart/Cart";
+
 export default {
 	name: "HeaderView",
+	components: { Cart },
+	data() {
+		return {
+			isActive: false,
+			auth: { isUserLoggedIn: false, isUserAdmin: false },
+		};
+	},
 };
 </script>
 
