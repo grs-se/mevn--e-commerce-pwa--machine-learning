@@ -1,12 +1,5 @@
 const state = {
-	categoriesList: [
-		{ id: 1, name: "phone" },
-		{ id: 2, name: "laptop" },
-		{ id: 3, name: "cameras" },
-		{ id: 4, name: "shirts" },
-		{ id: 5, name: "shoes" },
-		{ id: 6, name: "pants" },
-	],
+	CategoriesList: [],
 	non: "",
 };
 
@@ -27,7 +20,7 @@ const actions = {
 		commit("setCategories", newCatData);
 	},
 	async GetCatById({ commit }, ID) {
-		let item = state.categoriesList.filter((x) => x.id == ID);
+		let item = state.CategoriesList.filter((x) => x.id == ID);
 		// console.log("item id", ID, item);
 		commit("non");
 		return item;
@@ -35,7 +28,7 @@ const actions = {
 };
 
 const mutations = {
-	setCategories: (state, categories) => (state.categoriesList = categories),
+	setCategories: (state, categories) => (state.CategoriesList = categories),
 	non: (state) => (state.non = ""),
 };
 

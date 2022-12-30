@@ -2,6 +2,7 @@ const state = {
 	ProductsList: [
 		{
 			id: "12",
+			CatId: "11",
 			name: "i Phone 11 Pro s",
 			desc: "iphoe 11 pro back",
 			price: "599",
@@ -10,6 +11,7 @@ const state = {
 		},
 		{
 			id: "14",
+			CatId: "22",
 			name: "Huawei s hewr",
 			desc: "Huawei Huawei",
 			price: "1000",
@@ -18,6 +20,7 @@ const state = {
 		},
 		{
 			id: "16",
+			CatId: "33",
 			name: "Nike shirt s",
 			desc: "red Nike shirt",
 			price: "12",
@@ -26,6 +29,7 @@ const state = {
 		},
 		{
 			id: "18",
+			CatId: "44",
 			name: "Timberland shirt",
 			desc: "black templerland shirt",
 			price: "20",
@@ -34,6 +38,7 @@ const state = {
 		},
 		{
 			id: "20",
+			CatId: "55",
 			name: "Addidas shirt",
 			desc: "Addidas wight shirt",
 			price: "13",
@@ -42,6 +47,7 @@ const state = {
 		},
 		{
 			id: "24",
+			CatId: "66",
 			name: "Nike shoes",
 			desc: "black Nike shoes",
 			price: "50",
@@ -50,6 +56,7 @@ const state = {
 		},
 		{
 			id: "26",
+			CatId: "77",
 			name: "Nikon Camera",
 			desc: "Nikon camera description",
 			price: "2400",
@@ -58,6 +65,7 @@ const state = {
 		},
 		{
 			id: "28",
+			CatId: "88",
 			name: "Samsung Watch",
 			desc: "Samsung Glaxey Watch",
 			price: "5",
@@ -78,7 +86,8 @@ const actions = {
 		const newProdData = [
 			{
 				id: "12",
-				name: "X i Phone 11 Pro s",
+				CatId: "11",
+				name: "N i Phone 11 Pro s",
 				desc: "iphoe 11 pro back",
 				price: "599",
 				imgSrc:
@@ -86,7 +95,8 @@ const actions = {
 			},
 			{
 				id: "14",
-				name: "X Huawei s hewr",
+				CatId: "22",
+				name: "N Huawei s hewr",
 				desc: "Huawei Huawei",
 				price: "1000",
 				imgSrc:
@@ -94,7 +104,8 @@ const actions = {
 			},
 			{
 				id: "16",
-				name: "X Nike shirt s",
+				CatId: "33",
+				name: "N Nike shirt s",
 				desc: "red Nike shirt",
 				price: "12",
 				imgSrc:
@@ -102,7 +113,8 @@ const actions = {
 			},
 			{
 				id: "18",
-				name: "X Timberland shirt",
+				CatId: "44",
+				name: "N Timberland shirt",
 				desc: "black templerland shirt",
 				price: "20",
 				imgSrc:
@@ -110,7 +122,8 @@ const actions = {
 			},
 			{
 				id: "20",
-				name: "X Addidas shirt",
+				CatId: "55",
+				name: "N Addidas shirt",
 				desc: "Addidas wight shirt",
 				price: "13",
 				imgSrc:
@@ -118,7 +131,8 @@ const actions = {
 			},
 			{
 				id: "24",
-				name: "X Nike shoes",
+				CatId: "66",
+				name: "N Nike shoes",
 				desc: "black Nike shoes",
 				price: "50",
 				imgSrc:
@@ -126,7 +140,8 @@ const actions = {
 			},
 			{
 				id: "26",
-				name: "X Nikon Camera",
+				CatId: "77",
+				name: "N Nikon Camera",
 				desc: "Nikon camera description",
 				price: "2400",
 				imgSrc:
@@ -134,7 +149,8 @@ const actions = {
 			},
 			{
 				id: "28",
-				name: "X Samsung Watch",
+				CatId: "88",
+				name: "N Samsung Watch",
 				desc: "Samsung Glaxey Watch",
 				price: "5",
 				imgSrc:
@@ -153,6 +169,7 @@ const actions = {
 		const NewProdDataArr = [
 			{
 				id: "12",
+				CatId: "11",
 				name: "PN i Phone 11 Pro s",
 				desc: "iphoe 11 pro back",
 				price: "599",
@@ -161,6 +178,7 @@ const actions = {
 			},
 			{
 				id: "14",
+				CatId: "22",
 				name: "PN Huawei s hewr",
 				desc: "Huawei Huawei",
 				price: "1000",
@@ -169,6 +187,7 @@ const actions = {
 			},
 			{
 				id: "16",
+				CatId: "33",
 				name: "PN Nike shirt s",
 				desc: "red Nike shirt",
 				price: "12",
@@ -177,6 +196,7 @@ const actions = {
 			},
 			{
 				id: "18",
+				CatId: "44",
 				name: "PN Timberland shirt",
 				desc: "black templerland shirt",
 				price: "20",
@@ -185,6 +205,7 @@ const actions = {
 			},
 			{
 				id: "20",
+				CatId: "55",
 				name: "PN Addidas shirt",
 				desc: "Addidas wight shirt",
 				price: "13",
@@ -193,6 +214,7 @@ const actions = {
 			},
 			{
 				id: "24",
+				CatId: "66",
 				name: "PN Nike shoes",
 				desc: "black Nike shoes",
 				price: "50",
@@ -201,6 +223,7 @@ const actions = {
 			},
 			{
 				id: "26",
+				CatId: "77",
 				name: "PN Nikon Camera",
 				desc: "Nikon camera description",
 				price: "2400",
@@ -209,6 +232,7 @@ const actions = {
 			},
 			{
 				id: "28",
+				CatId: "88",
 				name: "PN Samsung Watch",
 				desc: "Samsung Glaxey Watch",
 				price: "5",

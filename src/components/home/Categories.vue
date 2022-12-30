@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<ul class="list-group list-group-flush">
-			<li v-for="item in categoriesList" :key="item.id" class="list-group-item">
+			<li v-for="item in CategoriesList" :key="item.id" class="list-group-item">
 				<!-- Default checked -->
 				<div class="custom-control custom-checkbox">
 					<input
@@ -20,20 +20,29 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
 	name: "CategoriesView",
+	emits: ["checkCat"],
 	data() {
 		return {
-			categoriesList: [
-				{ id: 1, name: "phone" },
-				{ id: 2, name: "laptop" },
-				{ id: 3, name: "cameras" },
-				{ id: 4, name: "shirts" },
-				{ id: 5, name: "shoes" },
-			],
+			CategoriesList: [],
 		};
 	},
+	computed: {
+		...mapGetters(["allCategories"]),
+	},
+	created() {
+		this.GetCategories();
+	},
+	mounted() {
+		this.CategoriesList = this.allCategories;
+	},
+
 	methods: {
+		// vuex
+		...mapActions(["GetCategories"]),
+		// vuex end
 		checkCat(cat) {
 			console.log("cat id", cat);
 			this.$emit("checkCat", cat);
