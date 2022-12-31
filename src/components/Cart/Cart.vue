@@ -81,8 +81,38 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
 	name: "Cart",
+	data() {
+		return {
+			items: [],
+		};
+	},
+	computed: {
+		...mapGetters(["AllCartItems"]),
+	},
+	created() {
+		this.GetProductsInCart();
+	},
+	methods: {
+		...mapActions(["ChangeItemQuantity", "GetProdById", "RemoveItemFromCart"]),
+		//
+		GetProductsInCart: function () {
+			let arr = this.AllCartItems;
+			let newArr = [];
+
+			for (let index = 0; index < arr.length; index++) {
+				const data = arr[index];
+				this.GetProdById(data.id).then((res) => {
+					res[0].quantity = data.quantity;
+					newArr.push(res[0]);
+				});
+			}
+			this.items = newArr;
+			console.log("Prod cart list", this.items);
+		},
+	},
 };
 </script>
 
