@@ -13,7 +13,7 @@
 			<div class="col-md-9">
 				<div class="container">
 					<div class="card-group">
-						<div class="row" v-if="isLoaded">
+						<div v-if="isLoaded" class="row">
 							<!-- <transition-group name="fade" tag="div" class="row"> -->
 
 							<div
@@ -101,7 +101,7 @@ import CategoriesView from "./Categories.vue";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
-	name: "Main",
+	name: "MainView",
 	components: {
 		CategoriesView,
 	},
