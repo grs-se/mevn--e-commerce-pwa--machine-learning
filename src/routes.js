@@ -5,6 +5,7 @@ const SpecificItem = () => import("./components/SpecificItem/SpecificItem.vue");
 const Cart = () => import("./components/Cart/Cart.vue");
 const LoginRegister = () =>
 	import("./components/LoginRegister/LoginRegister.vue");
+const UserProfile = () => import("./components/UserProfile/UserProfile.vue");
 
 const routes = [
 	{
@@ -26,6 +27,11 @@ const routes = [
 		path: "/LoginRegister",
 		name: "LoginRegister",
 		component: LoginRegister,
+	},
+	{
+		path: "/UserProfile",
+		name: "UserProfile",
+		component: UserProfile,
 	},
 ];
 
