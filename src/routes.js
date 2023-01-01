@@ -3,22 +3,29 @@ import { createRouter, createWebHistory } from "vue-router";
 const Main = () => import("./components/Home/Main.vue");
 const SpecificItem = () => import("./components/SpecificItem/SpecificItem.vue");
 const Cart = () => import("./components/Cart/Cart.vue");
+const LoginRegister = () =>
+	import("./components/LoginRegister/LoginRegister.vue");
 
 const routes = [
 	{
-		path: "/main",
+		path: "/Main",
 		name: "Main",
 		component: Main,
 	},
 	{
-		path: "/item",
+		path: "/SpecificItem",
 		name: "SpecificItem",
 		component: SpecificItem,
 	},
 	{
-		path: "/cart",
+		path: "/Cart",
 		name: "Cart",
 		component: Cart,
+	},
+	{
+		path: "/LoginRegister",
+		name: "LoginRegister",
+		component: LoginRegister,
 	},
 ];
 

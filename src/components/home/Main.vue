@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<!-- <Sugproducts /> -->
+		<sug-products />
 
 		<hr />
 
@@ -23,7 +23,7 @@
 							>
 								<img class="card-img-top" :src="item.imgSrc" :alt="item.name" />
 								<div class="card-body">
-									<h6>Price: ${{ item.price }}</h6>
+									<h6>£{{ item.price }}</h6>
 
 									<router-link :to="{ path: '/item', query: { ID: item.id } }">
 										<h5 class="card-title vx">{{ MaxName(item.name) }}</h5>
@@ -98,12 +98,14 @@
 
 <script>
 import CategoriesView from "./Categories.vue";
+import SugProducts from "./SugProducts.vue";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
 	name: "MainView",
 	components: {
 		CategoriesView,
+		SugProducts,
 	},
 	data() {
 		return {

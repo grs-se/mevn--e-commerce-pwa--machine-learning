@@ -13,8 +13,7 @@
 						</tr>
 					</thead>
 
-					<!-- <tbody v-if="dataLoaded"></tbody> -->
-					<tbody>
+					<tbody v-if="dataLoaded">
 						<tr v-for="item in items" :key="item.id">
 							<td class="col-sm-8 col-md-6">
 								<div class="media">
@@ -100,7 +99,7 @@ export default {
 		return {
 			TotalItemsPrice: 0,
 			items: [],
-			// dataLoaded: true,
+			dataLoaded: Boolean,
 		};
 	},
 	computed: {
@@ -113,6 +112,9 @@ export default {
 	},
 	created() {
 		this.GetProductsInCart();
+	},
+	mounted() {
+		//  this.TotalPrice();
 	},
 	methods: {
 		...mapActions([
@@ -136,8 +138,8 @@ export default {
 				});
 			}
 			this.items = newArr;
+			this.dataLoaded = true;
 			console.log("Prod cart list", this.items);
-			// this.dataLoaded = true;
 		},
 		DescFilters(value) {
 			return (

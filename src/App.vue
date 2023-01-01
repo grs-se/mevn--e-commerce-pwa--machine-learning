@@ -24,4 +24,27 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.clear {
+	width: 100%;
+	height: 1px;
+	clear: both;
+	display: block;
+}
+
+.xp {
+	padding: 10px;
+	margin: 5% auto;
+}
+
+/* animation fade mode start here */
+
+/* .fade-leave-active {
+	transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+	opacity: 0;
+} */
+</style>

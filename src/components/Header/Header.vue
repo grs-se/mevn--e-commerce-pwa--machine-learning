@@ -29,9 +29,11 @@
 					<!-- search start -->
 					<!-- search end -->
 
-					<button class="btn btn-outline-primary my-2 my-sm-2 m-2">
-						Login | regeste
-					</button>
+					<router-link to="/LoginRegister">
+						<button class="btn btn-outline-primary my-2 my-sm-2 m-2">
+							Login | Register
+						</button></router-link
+					>
 
 					<button class="btn btn-outline-danger my-2 my-sm-2 m-2">
 						Logout
