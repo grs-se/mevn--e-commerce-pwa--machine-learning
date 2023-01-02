@@ -24,14 +24,14 @@ const actions = {
 
 const mutations = {
 	// Search
-	SetUserMovementSearch: (search, newusmoveSearch) =>
-		state.UserMovement.search.unshift(newusmoveSearch),
+	SetUserMovementSearch: (state, newusmoveSearch) =>
+		state.UserMovement.Search.unshift(newusmoveSearch),
 	// Cart
 	SetUserMovementCart: (state, newusmoveCart) =>
-		(state.UserMovement.cart = newusmoveCart),
+		(state.UserMovement.Cart = newusmoveCart),
 	// Items
 	SetUserMovementItem: (state, newusmoveItems) =>
-		(state.UserMovement.items = newusmoveItems),
+		(state.UserMovement.Items = newusmoveItems),
 };
 
 export default {
