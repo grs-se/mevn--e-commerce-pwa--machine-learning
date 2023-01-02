@@ -1,16 +1,16 @@
 const state = {
-	IsAuthenticated: { isLoggedIn: false, isAdmin: false },
+	isAuthenticated: { isLoggedIn: false, isAdmin: false },
 };
 
 const getters = {
-	UserAuth: (state) => state.IsAuthenticated,
+	UserAuth: (state) => state.isAuthenticated,
 };
 
 const actions = {
 	async SetUserAuth({ commit }, data) {
 		// this data will include if user is logged in and if is user admin
 		let newStatus = {
-			isLoggedin: data.isLoggedIn,
+			isLoggedIn: data.isLoggedIn,
 			isAdmin: data.isAdmin,
 		};
 		localStorage.setItem("Auth", JSON.stringify(newStatus));
@@ -26,8 +26,8 @@ const actions = {
 
 const mutations = {
 	SetAndGetUserAuthStatus: (state, UserAuthStatus) => (
-		(state.IsAuthenticated.isAdmin = UserAuthStatus.isAdmin),
-		(state.IsAuthenticated.isLoggedIn = UserAuthStatus.isLoggedIn)
+		(state.isAuthenticated.isAdmin = UserAuthStatus.isAdmin),
+		(state.isAuthenticated.isLoggedIn = UserAuthStatus.isLoggedIn)
 	),
 };
 
