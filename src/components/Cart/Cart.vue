@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<center>
+		<div style="display: flex; justify-content: center">
 			<div class="col-sm-12 col-md-9 col-md-offset-1">
 				<table class="table table-hover">
 					<thead>
@@ -13,7 +13,8 @@
 						</tr>
 					</thead>
 
-					<tbody v-if="dataLoaded">
+					<!-- <tbody v-if="dataLoaded"></tbody> -->
+					<tbody>
 						<tr v-for="item in items" :key="item.id">
 							<td class="col-sm-8 col-md-6">
 								<div class="media">
@@ -87,7 +88,7 @@
 					</tbody>
 				</table>
 			</div>
-		</center>
+		</div>
 	</div>
 </template>
 
@@ -99,7 +100,7 @@ export default {
 		return {
 			TotalItemsPrice: 0,
 			items: [],
-			dataLoaded: Boolean,
+			// dataLoaded: Boolean,
 		};
 	},
 	computed: {
@@ -138,7 +139,7 @@ export default {
 				});
 			}
 			this.items = newArr;
-			this.dataLoaded = true;
+			// this.dataLoaded = true;
 			console.log("Prod cart list", this.items);
 		},
 		DescFilters(value) {
@@ -171,7 +172,7 @@ export default {
 		MoveToDetails(id) {
 			this.$router
 				.push({
-					path: "/item",
+					path: "/SpecificItem",
 					name: "SpecificItem",
 					query: {
 						ID: id,

@@ -2,7 +2,7 @@
 	<div>
 		<!-- Start of the navBar -->
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a href="" class="navbar-brand">The App</a>
+			<router-link to="/" class="navbar-brand">The App</router-link>
 
 			<button
 				class="navbar-toggler"
@@ -27,6 +27,7 @@
 				<ul class="navbar-nav mr-auto"></ul>
 				<form class="form-inline my-2 my-lg-0">
 					<!-- search start -->
+					<search-view />
 					<!-- search end -->
 
 					<router-link to="/LoginRegister">
@@ -39,13 +40,17 @@
 						Logout
 					</button>
 
-					<router-link to="/cart">
+					<router-link to="/Cart">
 						<button class="btn btn-outline-warning my-2 my-sm-2 m-2">
 							Cart
 						</button>
 					</router-link>
 
-					<button class="btn btn-outline-danger my-2 my-sm-2 m-2">Admin</button>
+					<router-link to="/Admin">
+						<button class="btn btn-outline-danger my-2 my-sm-2 m-2">
+							Admin
+						</button>
+					</router-link>
 
 					<router-link to="/UserProfile">
 						<button class="btn btn-outline-dark my-2 my-sm-2 m-2">
@@ -60,11 +65,15 @@
 </template>
 
 <script>
+import SearchView from "./Search";
 // import Cart from "../Cart/Cart";
 
 export default {
 	name: "HeaderView",
 	// components: { Cart },
+	components: {
+		SearchView,
+	},
 	data() {
 		return {
 			isActive: false,

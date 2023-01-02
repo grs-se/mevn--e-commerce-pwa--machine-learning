@@ -9,7 +9,9 @@
 					<div class="card">
 						<img class="card-img-top" :src="item.imgSrc" />
 						<div class="card-block">
-							<router-link :to="{ path: '/item', query: { ID: item.id } }">
+							<router-link
+								:to="{ path: '/SpecificItem', query: { ID: item.id } }"
+							>
 								<h6 class="card-title vx">{{ MaxName(item.name) }}</h6>
 							</router-link>
 

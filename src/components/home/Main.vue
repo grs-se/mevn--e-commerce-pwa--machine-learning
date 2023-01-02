@@ -25,12 +25,14 @@
 								<div class="card-body">
 									<h6>£{{ item.price }}</h6>
 
-									<router-link :to="{ path: '/item', query: { ID: item.id } }">
+									<router-link
+										:to="{ path: '/SpecificItem', query: { ID: item.id } }"
+									>
 										<h5 class="card-title vx">{{ MaxName(item.name) }}</h5>
 									</router-link>
 
 									<button
-										v-if="item.isInCart"
+										v-if="item.IsInCart"
 										class="btn btn-danger"
 										@click="RemoveFromCart(item.id, index)"
 									>
@@ -159,23 +161,23 @@ export default {
 				this.CheckIfInCart(ElId).then((res) => {
 					console.log("d", res);
 					let objIndex = data.findIndex((obj) => obj.id == ElId);
-					data[objIndex].isInCart = res;
+					data[objIndex].IsInCart = res;
 					this.isLoaded = true;
 				});
 			}
-			console.log("data", data);
+			// console.log("data", data);
 			this.items = data;
 		},
 		AddToCart(id, index) {
 			this.isLoaded = false;
-			this.items[index].isInCart = true;
+			this.items[index].IsInCart = true;
 			this.isLoaded = true;
 			this.SetNewCartItem(id);
 			this.getProdData();
 		},
 		RemoveFromCart(id, index) {
 			this.isLoaded = false;
-			this.items[index].isInCart = false;
+			this.items[index].IsInCart = false;
 			this.isLoaded = true;
 			this.RemoveItemFromCart(id);
 			this.getProdData();
