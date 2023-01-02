@@ -54,7 +54,7 @@
 						</div>
 					</div>
 
-					<div class="col-md-9">
+					<transition-group tag="div" name="slide" class="col-md-9 d">
 						<Users
 							v-if="ChangeClassAndComponent('Users') ? 'active' : ''"
 							key="Users"
@@ -68,7 +68,7 @@
 							v-if="ChangeClassAndComponent('Products')"
 							key="Products"
 						/>
-					</div>
+					</transition-group>
 				</div>
 			</div>
 		</center>
