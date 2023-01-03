@@ -2,19 +2,27 @@
 	<center>
 		<div>
 			<h5 class="btn-danger">Users</h5>
-
-			<ul class="list-group m">
+			<ul v-for="data in UsersList" :key="data.id" class="list-group m">
 				<li
 					class="list-group-item d-flex justify-content-between align-items-center"
 				>
-					<img class="userimg" alt="" />
-					<span class="badge badge-primary badge-pill">User</span>
-					<span class="badge badge-warning badge-pill">Admin</span>
-					name
+					<img class="userimg" alt="" :src="data.imgSrc" />
+					<span v-if="!data.isAdmin" class="badge badge-primary badge-pill"
+						>User</span
+					>
+					<span v-if="data.isAdmin" class="badge badge-warning badge-pill"
+						>Admin</span
+					>
+					{{ data.name }}
 					<div class="form-group">
-						<select class="form-control" id="exampleFormControlSelect1">
-							<option class="btn btn-primary">User</option>
-							<option class="btn btn-warning">Admin</option>
+						<select
+							id="exampleFormControlSelect1"
+							v-model="data.isAdmin"
+							class="form-control"
+							@change="ChangeUserRole(data.id, data.isAdmin)"
+						>
+							<option :value="false" class="btn btn-primary">User</option>
+							<option :value="true" class="btn btn-warning">Admin</option>
 						</select>
 					</div>
 				</li>
@@ -24,8 +32,32 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
 	name: "UsersView",
+	data() {
+		return {
+			UsersList: [],
+			PageNumber: null,
+		};
+	},
+	computed: {
+		...mapGetters(["AllUsers"]),
+	},
+	created() {
+		this.GetUserList();
+		this.GetUsersListFromStore();
+	},
+	methods: {
+		...mapActions(["GetUserList", "EditOneUser"]),
+		GetUsersListFromStore: function () {
+			this.UsersList = this.AllUsers;
+		},
+		ChangeUserRole: function (id, role) {
+			let data = { ID: id, isAdmin: role };
+			this.EditOneUser(data);
+		},
+	},
 };
 </script>
 
