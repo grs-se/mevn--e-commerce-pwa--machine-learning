@@ -27,14 +27,21 @@
 					</div>
 				</li>
 			</ul>
+
+			<pagination-store
+				component-name="UsersComponent"
+				@new-UserData="NewUserData"
+			></pagination-store>
 		</div>
 	</center>
 </template>
 
 <script>
+import PaginationStore from "./PaginationStore.vue";
 import { mapActions, mapGetters } from "vuex";
 export default {
 	name: "UsersView",
+	components: { PaginationStore },
 	data() {
 		return {
 			UsersList: [],
@@ -49,13 +56,17 @@ export default {
 		this.GetUsersListFromStore();
 	},
 	methods: {
-		...mapActions(["GetUserList", "EditOneUser"]),
+		...mapActions(["GetUserList", "EditOneUser", "GetUserByPageNum"]),
 		GetUsersListFromStore: function () {
 			this.UsersList = this.AllUsers;
 		},
 		ChangeUserRole: function (id, role) {
 			let data = { ID: id, isAdmin: role };
 			this.EditOneUser(data);
+		},
+		NewUserData(data, page) {
+			this.PageNumber = page;
+			this.UsersList = data;
 		},
 	},
 };

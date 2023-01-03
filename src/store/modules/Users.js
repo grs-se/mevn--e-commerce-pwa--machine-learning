@@ -97,7 +97,7 @@ const actions = {
 		];
 		commit("SetUserList", NewUserListData);
 	},
-	async GetUsByPNum({ commit }, PageNum) {
+	async GetUserByPageNum({ commit }, PageNum) {
 		console.log("Page num", PageNum);
 		const NewUsDataArr = [
 			{
