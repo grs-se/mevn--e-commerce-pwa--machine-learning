@@ -30,7 +30,7 @@
 
 			<pagination-store
 				component-name="UsersComponent"
-				@new-UserData="NewUserData"
+				@new-user-data="NewUserData"
 			></pagination-store>
 		</div>
 	</center>

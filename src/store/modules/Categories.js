@@ -57,9 +57,9 @@ const actions = {
 };
 
 const mutations = {
-	SetCategories: (state, categories) => (state.CategoriesList = categories),
+	GetCategories: (state, categories) => (state.CategoriesList = categories),
 	NewCategories: (state, newData) => state.CategoriesList.unshift(newData),
-	EditOneCategories: (state, NewDataObj) =>
+	EditOneCategory: (state, NewDataObj) =>
 		(state.CategoriesList[NewDataObj.objIndex].name = NewDataObj.name),
 	ResetAndDelete: (state, newArrDel) => (state.CategoriesList = newArrDel),
 	non: (state) => (state.non = ""),

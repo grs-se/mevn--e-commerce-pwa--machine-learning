@@ -42,7 +42,7 @@ export default {
 			default: "UsersComponent",
 		},
 	},
-	emits: ["new-UserData"],
+	emits: ["new-user-data", "new-category-data"],
 	data() {
 		return {
 			PageSelected: "",
@@ -68,12 +68,17 @@ export default {
 		this.Pagination();
 	},
 	methods: {
-		...mapActions(["GetUserByPageNum"]),
+		...mapActions(["GetUserByPageNum", "GetCatByPageNum"]),
 		ChangePage(page) {
 			if (this.componentName == "UsersComponent") {
 				this.GetUserByPageNum(page);
 				let newData = this.AllUsers;
-				this.$emit("new-UserData", newData, page);
+				this.$emit("new-user-data", newData, page);
+			}
+			if (this.componentName == "CategoriesComponent") {
+				this.GetCatByPageNum(page);
+				let newData = this.AllCategories;
+				this.$emit("new-category-data", newData, page);
 			}
 			this.PageSelected = page;
 			this.$router
