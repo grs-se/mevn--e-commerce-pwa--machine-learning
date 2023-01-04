@@ -10,7 +10,7 @@ const SearchProduct = () =>
 	import("./components/SearchProduct/SearchProduct.vue");
 const Admin = () => import("./components/Admin/Admin.vue");
 // import Categories from "./components/Admin/Categories.vue";
-// import Cart" from "./components/Admin/Cart".vue";
+// const Cart = () => import("./components/Admin/Cart.vue");
 // import Users from "./components/Admin/Users.vue";
 
 import AuthGuard from "./Guards/AuthGuard.js";

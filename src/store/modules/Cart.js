@@ -93,9 +93,7 @@ const actions = {
 };
 
 const mutations = {
-	SetNew: (state, CartItems) => {
-		state.OriginalCartListData = CartItems;
-	},
+	SetNew: (state, CartItems) => (state.OriginalCartListData = CartItems),
 	non: (state) => (state.non = ""),
 };
 

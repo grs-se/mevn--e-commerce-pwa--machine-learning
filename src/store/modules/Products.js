@@ -242,11 +242,54 @@ const actions = {
 		];
 		commit("SetProdByPageNum", NewProdDataArr);
 	},
-};
+	async ADD_NEW_PRODUCT({ commit }, data) {
+		let NewDataArr = {};
+		let newId = Math.floor(Math.random() * 50) + 10;
+		NewDataArr = {
+			id: newId,
+			name: data.name,
+			CatId: data.CatId,
+			desc: data.desc,
+			price: data.price,
+			imgSrc: data.imgSrc,
+		};
 
+		commit("NewProducts", NewDataArr);
+	},
+	async EditOneProduct({ commit }, data) {
+		let objIndex = state.ProductList.findIndex((obj) => obj.id == data.id);
+		let name = data.name;
+		let CatId = data.CatId;
+		let desc = data.desc;
+		let price = data.price;
+		let imgSrc = data.imgSrc;
+		let NewDataObj = { objIndex, name, CatId, desc, price, imgSrc };
+
+		commit("EditOneProduct", NewDataObj);
+	},
+	async DeleteOneProd({ commit }, data) {
+		let newArrDel = state.ProductsList.filter((x) => {
+			return x.id != data.id;
+		});
+		commit("ResetAndDelete", newArrDel);
+	},
+};
 const mutations = {
 	// work with Products List
 	setProducts: (state, newProdData) => (state.ProductsList = newProdData),
+	// new prod
+	NewProducts: (state, newProd) => state.ProductsList.unshift(newProd),
+	// edit prod
+	EditOneProduct: (state, NewDataObj) => (
+		(state.ProductsList[NewDataObj.objIndex].name = NewDataObj.name),
+		(state.ProductsList[NewDataObj.objIndex].CatId = NewDataObj.CatId),
+		(state.ProductsList[NewDataObj.objIndex].desc = NewDataObj.desc),
+		(state.ProductsList[NewDataObj.objIndex].price = NewDataObj.price),
+		(state.ProductsList[NewDataObj.objIndex].imgSrc = NewDataObj.imgSrc)
+	),
+	// Could use setProducts operation for both ResetAndDelete and SetProdByPageNum - same code
+	// delete prod
+	ResetAndDelete: (state, newArrDel) => (state.ProductsList = newArrDel),
 	// set prod by page num
 	SetProdByPageNum: (state, NewProdDataArr) =>
 		(state.ProductsList = NewProdDataArr),

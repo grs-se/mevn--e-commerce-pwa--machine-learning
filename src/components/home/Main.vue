@@ -165,7 +165,7 @@ export default {
 					this.isLoaded = true;
 				});
 			}
-			// console.log("data", data);
+			console.log("data", data);
 			this.items = data;
 		},
 		AddToCart(id, index) {

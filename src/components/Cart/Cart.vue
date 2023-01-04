@@ -28,12 +28,12 @@
 									<div class="media-body">
 										<h4 class="media-heading">
 											<a class="ab" @click="MoveToDetails(item.id)">{{
-												item.name
+												NameFilters(item.name)
 											}}</a>
 										</h4>
 										<span>Desc : </span>
 										<span class="text-primary">
-											<strong> {{ item.desc }}</strong>
+											<strong> {{ DescFilters(item.desc) }}</strong>
 										</span>
 									</div>
 								</div>
