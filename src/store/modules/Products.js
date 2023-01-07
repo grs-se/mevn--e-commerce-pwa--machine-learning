@@ -257,7 +257,7 @@ const actions = {
 		commit("NewProducts", NewDataArr);
 	},
 	async EditOneProduct({ commit }, data) {
-		let objIndex = state.ProductList.findIndex((obj) => obj.id == data.id);
+		let objIndex = state.ProductsList.findIndex((obj) => obj.id == data.id);
 		let name = data.name;
 		let CatId = data.CatId;
 		let desc = data.desc;
@@ -267,7 +267,7 @@ const actions = {
 
 		commit("EditOneProduct", NewDataObj);
 	},
-	async DeleteOneProd({ commit }, data) {
+	async DeleteOneProduct({ commit }, data) {
 		let newArrDel = state.ProductsList.filter((x) => {
 			return x.id != data.id;
 		});
