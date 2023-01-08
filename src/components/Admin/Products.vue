@@ -4,21 +4,32 @@
 			<h5 class="btn-danger">Products</h5>
 			<!-- add new product start -->
 
-			<button class="btn btn-success form-group bn">New Product</button>
+			<button
+				class="btn btn-success form-group bn"
+				@click="CreateNew ? (CreateNew = !CreateNew) : (CreateNew = !CreateNew)"
+			>
+				New Product
+			</button>
 
-			<form class="d">
+			<form v-if="CreateNew" class="d">
 				<div class="form-row">
 					<div class="col-md-12">
-						<img class="ii" />
+						<img class="ii" :src="NewProdData.imgSrc" />
 
 						<div class="fileUpload">
-							<input type="file" class="upload" enctype="multipart/form-data" />
+							<input
+								type="file"
+								class="upload"
+								enctype="multipart/form-data"
+								@change="onFileNewImg($event)"
+							/>
 							<small>Upload Img</small>
 						</div>
 					</div>
 					<div class="form-group col-md-6">
 						<label>Name</label>
 						<input
+							v-model="NewProdData.name"
 							type="text"
 							class="form-control"
 							placeholder="Product name"
@@ -27,6 +38,7 @@
 					<div class="form-group col-md-6">
 						<label>Price</label>
 						<input
+							v-model="NewProdData.price"
 							type="number"
 							class="form-control"
 							placeholder="Product Price"
@@ -35,19 +47,40 @@
 				</div>
 				<div class="form-group">
 					<label>Desc</label>
-					<input type="text" class="form-control" placeholder="Description" />
+					<input
+						v-model="NewProdData.desc"
+						type="text"
+						class="form-control"
+						placeholder="Description"
+					/>
 				</div>
 
 				<div class="form-row">
 					<div class="form-group col-md-4">
 						<label for="inputCategories">Categories</label>
-						<select class="form-control">
-							<option>Catname</option>
+						<select
+							v-model="NewProdData.CatId"
+							class="form-control"
+							@change="ChangeNewProdCat($event)"
+						>
+							<option
+								v-for="CatData in CategoriesList"
+								:key="CatData.id"
+								:value="CatData.id"
+							>
+								{{ CatData.name }}
+							</option>
 						</select>
 					</div>
 				</div>
 
-				<button type="submit" class="btn btn-primary">Add</button>
+				<button
+					type="submit"
+					class="btn btn-primary"
+					@click="AddNewProduct($event)"
+				>
+					Add
+				</button>
 			</form>
 
 			<!-- add new product end -->
@@ -156,14 +189,23 @@
 					<!-- show mode end -->
 				</div>
 			</div>
+
+			<hr />
+			<pagination
+				v-if="!CreateNew"
+				component-name="ProductsComponent"
+				@new-products-data="NewProductsData"
+			/>
 		</div>
 	</center>
 </template>
 
 <script>
+import Pagination from "./PaginationStore.vue";
 import { mapGetters, mapActions } from "vuex";
 export default {
 	name: "ProductsView",
+	components: { Pagination },
 	data() {
 		return {
 			ProductsList: [],
@@ -285,6 +327,38 @@ export default {
 			let data = { ID };
 			this.DeleteOneProduct(data);
 			this.GetCatListFromStore();
+			this.AddEditToProductsList();
+		},
+		ChangeNewProdCat(e) {
+			this.NewProdData.CatId = e.target.value;
+		},
+		onFileNewImg(e) {
+			let reader = new FileReader();
+			reader.readAsDataURL(e.target.files[0]);
+			reader.onload = () => {
+				this.NewProdData.imgSrc = reader.result;
+			};
+		},
+		AddNewProduct(e) {
+			e.preventDefault();
+			if (
+				!this.NewProdData.name ||
+				!this.NewProdData.desc ||
+				!this.NewProdData.price ||
+				!this.NewProdData.imgSrc ||
+				!this.NewProdData.CatId
+			) {
+				alert("Please Complete From Data");
+			} else {
+				this.ADD_NEW_PRODUCT(this.NewProdData);
+				this.AddEditToProductsList();
+				this.CreateNew = !this.CreateNew;
+			}
+		},
+		NewProductsData(data, page) {
+			this.PageNumber = page;
+			this.ProductsList = data;
+			this.CategoriesList = this.AllCategories;
 			this.AddEditToProductsList();
 		},
 	},

@@ -68,7 +68,7 @@ export default {
 		this.Pagination();
 	},
 	methods: {
-		...mapActions(["GetUserByPageNum", "GetCatByPageNum"]),
+		...mapActions(["GetUserByPageNum", "GetCatByPageNum", "GetProdByPageNum"]),
 		ChangePage(page) {
 			if (this.componentName == "UsersComponent") {
 				this.GetUserByPageNum(page);
@@ -79,6 +79,11 @@ export default {
 				this.GetCatByPageNum(page);
 				let newData = this.AllCategories;
 				this.$emit("new-category-data", newData, page);
+			}
+			if (this.componentName == "ProductsComponent") {
+				this.GetProdByPageNum(page);
+				let newData = this.AllProducts;
+				this.$emit("new-products-data", newData, page);
 			}
 			this.PageSelected = page;
 			this.$router
