@@ -45,11 +45,11 @@
 									'list-group-item',
 									'list-group-item-action',
 									'v',
-									ChangeClassAndComponent('Cart') ? 'active' : '',
+									ChangeClassAndComponent('Chart') ? 'active' : '',
 								]"
-								@click="ChangePage('Cart')"
+								@click="ChangePage('Chart')"
 							>
-								Cart
+								Chart
 							</a>
 						</div>
 					</div>
@@ -63,7 +63,7 @@
 							v-if="ChangeClassAndComponent('Categories')"
 							key="Categories"
 						/>
-						<Cart v-if="ChangeClassAndComponent('Cart')" key="Cart" />
+						<Chart v-if="ChangeClassAndComponent('Chart')" key="Chart" />
 						<Products
 							v-if="ChangeClassAndComponent('Products')"
 							key="Products"
@@ -77,7 +77,7 @@
 
 <script>
 import Categories from "./Categories.vue";
-import Cart from "./Cart.vue";
+import Chart from "./Chart.vue";
 import Products from "./Products.vue";
 import Users from "./Users.vue";
 
@@ -85,7 +85,7 @@ export default {
 	name: "AdminView",
 	components: {
 		Categories,
-		Cart,
+		Chart,
 		Products,
 		Users,
 	},
@@ -94,7 +94,7 @@ export default {
 			Data: [
 				{ name: "Users", val: true },
 				{ name: "Categories", val: false },
-				{ name: "Cart", val: false },
+				{ name: "Chart", val: false },
 				{ name: "Products", val: false },
 			],
 		};
