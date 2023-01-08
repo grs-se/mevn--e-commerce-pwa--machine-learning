@@ -324,7 +324,7 @@ export default {
 			this.NewProductsList = newDataArr;
 		},
 		Delete(ID) {
-			let data = { ID };
+			let data = { id: ID };
 			this.DeleteOneProduct(data);
 			this.GetCatListFromStore();
 			this.AddEditToProductsList();

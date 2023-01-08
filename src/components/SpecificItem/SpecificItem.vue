@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<center>
-			<div v-if="isLoaded" class="card">
+			<div class="card">
 				<img
 					class="card-img-top"
 					:src="ResultItems.imgSrc"
@@ -33,7 +33,6 @@
 </template>
 
 <script>
-// import { booleanLiteral } from "@babel/types";
 import { mapActions } from "vuex";
 
 export default {
@@ -41,35 +40,18 @@ export default {
 	data() {
 		return {
 			ResultItems: {
-				id: 1,
+				id: "",
 				imgSrc: "",
 				name: "",
 				price: null,
 				desc: "",
 				CatName: "",
-				// InCart: true,
+				InCart: true,
 			},
 			isLoaded: Boolean,
 		};
 	},
 	created() {
-		// let prodId = this.$route.query.ID;
-		// let data = {
-		// 	id: "12",
-		// 	name: "i Phone 11 Pro s",
-		// 	desc: "iphoe 11 pro back",
-		// 	price: "599",
-		// 	catName: "phone",
-		// 	imgSrc:
-		// 		"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone11-black-select-2019?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1566956144418",
-		// };
-		// this.ResultItems.id = prodId;
-		// this.ResultItems.name = data.name;
-		// this.ResultItems.desc = data.desc;
-		// this.ResultItems.price = data.price;
-		// this.ResultItems.imgSrc = data.imgSrc;
-		// this.ResultItems.catName = data.catName;
-		// console.log("item.id", prodId, "item data", this.ResultItems);
 		this.GetRouteData();
 	},
 	methods: {
@@ -80,6 +62,7 @@ export default {
 			"CheckIfInCart",
 			"SetNewCartItem",
 			"RemoveItemFromCart",
+			"SetUserMovementItem",
 		]),
 
 		async GetRouteData() {
@@ -106,6 +89,9 @@ export default {
 				console.log("res X", res);
 				this.isLoaded = true;
 			});
+
+			// Set user movement
+			this.SetUserMovementItem(ProdID);
 		},
 		async ChangeItemStatus() {
 			this.isLoaded = false;

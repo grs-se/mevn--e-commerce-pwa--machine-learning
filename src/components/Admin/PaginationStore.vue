@@ -42,7 +42,7 @@ export default {
 			default: "UsersComponent",
 		},
 	},
-	emits: ["new-user-data", "new-category-data"],
+	emits: ["new-user-data", "new-category-data", "new-products-data"],
 	data() {
 		return {
 			PageSelected: "",

@@ -122,12 +122,11 @@ export default {
 			"ChangeItemQuantity",
 			"RemoveItemFromCart",
 			"GetProdById",
-			"GetCartItem",
+			"SetUserMovementCart",
 		]),
 		//
 		GetProductsInCart: function () {
 			// this.dataLoaded = false;
-			this.GetCartItem();
 			let arr = this.AllCartItems;
 			let newArr = [];
 
@@ -162,20 +161,32 @@ export default {
 		CheckNewQuantity: function (Id, e) {
 			if (e.target.value == 0) {
 				let newData = this.items.map((el) => {
-					if (el.id == Id)
-						return Object.assign({}, el, { quantity: e.target.value });
+					if (el.id == Id) return Object.assign({}, el, { quantity: 1 });
 					return el;
 				});
 				this.items = newData;
+			} else {
+				let newData = this.items.map((el) => {
+					if (el.id == Id)
+						return Object.assign({}, el, {
+							quantity: e.target.value,
+						});
+					return el;
+				});
+				// change quantity on cart store
+				let NewD = { id: Id, quantity: Number(e.target.value) };
+				this.ChangeItemQuantity(NewD);
+				// end cart
+				this.items = newData;
 			}
 		},
-		MoveToDetails(id) {
+		MoveToDetails: function (Id) {
 			this.$router
 				.push({
 					path: "/SpecificItem",
 					name: "SpecificItem",
 					query: {
-						ID: id,
+						ID: Id,
 					},
 				})
 				.catch(() => {});
@@ -187,6 +198,7 @@ export default {
 			this.items = newArr;
 
 			this.RemoveItemFromCart(Id);
+			this.AddToUserMovements();
 		},
 		TotalPrice: function () {
 			const arrData = [];
@@ -200,6 +212,10 @@ export default {
 				return a + b;
 			}, 0);
 			this.TotalItemsPrice = lastNumber;
+			this.AddToUserMovements();
+		},
+		AddToUserMovements: function () {
+			this.SetUserMovementCart(this.items);
 		},
 	},
 };
