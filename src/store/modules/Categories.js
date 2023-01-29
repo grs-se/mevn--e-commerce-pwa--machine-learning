@@ -1,6 +1,10 @@
+import axios from 'axios';
+const port = process.env.PORT || 3000;
+const URL_backend = `http://localhost:${port}/api`;
+
 const state = {
 	CategoriesList: [],
-	non: "",
+	non: '',
 };
 
 const getters = {
@@ -9,60 +13,89 @@ const getters = {
 
 const actions = {
 	async GetCategories({ commit }) {
-		const newCatData = [
-			{ id: 11, name: "phone C" },
-			{ id: 22, name: "laptop C" },
-			{ id: 33, name: "cameras C" },
-			{ id: 44, name: "shirts C" },
-			{ id: 55, name: "shoes C" },
-			{ id: 66, name: "pants C" },
-		];
-		commit("GetCategories", newCatData);
+		axios.get(`${URL_backend}/categories/CatByPage/${1}`).then((res) => {
+			commit('setCategories', res.data);
+		});
 	},
-	async GetCatById({ commit }, ID) {
-		let item = state.CategoriesList.filter((x) => x.id == ID);
-		// console.log("item id", ID, item);
-		commit("non");
-		return item;
+	async GetCatByPageNum({ commit }, PageNum) {
+		axios.get(`${URL_backend}/categories/CatByPage/${PageNum}`).then((res) => {
+			commit('setCategories', res.data);
+		});
 	},
 	async ADD_NEW_CAT({ commit }, data) {
-		let NewDataArr = {};
-		let newID = Math.floor(Math.random() * 50) + 10;
-		NewDataArr = { id: newID, name: data.NewCatName };
-		commit("NewCategories", NewDataArr);
+		let Tok = JSON.parge(localStorage.getItem('Auth').Token);
+		axios
+			.post(
+				`${URL_backend}/categories`,
+				{
+					name: data.NewCatName,
+				},
+				{ headers: { 'x-auth-token': Tok } }
+			)
+			.then((res) => {
+				commit('NewCategories', res.data);
+			});
 	},
 	async EditOneCat({ commit }, data) {
-		let objIndex = state.CategoriesList.findIndex((obj) => obj.id === data.ID);
-		let name = data.name;
-		let newDataObj = { objIndex, name };
-		commit("EditOneCategory", newDataObj);
+		let Tok = JSON.parge(localStorage.getItem('Auth').Token);
+		axios
+			.put(
+				`${URL_backend}/categories/${data.ID}`,
+				{
+					name: data.NewCatName,
+				},
+				{ headers: { 'x-auth-token': Tok } }
+			)
+			.then(() => {
+				let objIndex = state.CategoriesList.findIndex(
+					(obj) => obj.id === data.ID
+				);
+				let name = data.name;
+				let newDataObj = { objIndex, name };
+				commit('EditOneCategory', newDataObj);
+			})
+			.catch((err) => {
+				console.log(err.response.data.msg);
+			});
 	},
 	async DeleteOneCat({ commit }, data) {
-		let newArrDel = state.CategoriesList.filter((x) => {
-			return x.id != data.ID;
-		});
-		commit("ResetAndDelete", newArrDel);
+		let Tok = JSON.parge(localStorage.getItem('Auth').Token);
+		axios
+			.delete(`${URL_backend}/categories/${data.ID}`, {
+				headers: { 'x-auth-token': Tok },
+			})
+			.then((res) => {
+				console.log('Deleted Cat successfully', res.data);
+
+				let newArrDel = state.CategoriesList.filter((x) => {
+					return x.id != data.ID;
+				});
+				commit('ResetAndDelete', newArrDel);
+			})
+			.catch((err) => {
+				console.log(err.response.data.msg);
+			});
 	},
-	async GetCatByPageNum({ commit }) {
-		const newCatData = [
-			{ id: 77, name: "phone P" },
-			{ id: 88, name: "laptop P" },
-			{ id: 99, name: "cameras P" },
-			{ id: 100, name: "shirts P" },
-			{ id: 101, name: "shoes P" },
-			{ id: 102, name: "pants P" },
-		];
-		commit("GetCategories", newCatData);
+	async GetCatById({ commit }, ID) {
+		let Tok = JSON.parge(localStorage.getItem('Auth').Token);
+		axios
+			.get(`${URL_backend}/categories/${ID}`, {
+				headers: { 'x-auth-token': Tok },
+			})
+			.then((res) => {
+				commit('non');
+				return res.data;
+			});
 	},
 };
 
 const mutations = {
-	GetCategories: (state, categories) => (state.CategoriesList = categories),
+	setCategories: (state, categories) => (state.CategoriesList = categories),
 	NewCategories: (state, newData) => state.CategoriesList.unshift(newData),
 	EditOneCategory: (state, NewDataObj) =>
 		(state.CategoriesList[NewDataObj.objIndex].name = NewDataObj.name),
 	ResetAndDelete: (state, newArrDel) => (state.CategoriesList = newArrDel),
-	non: (state) => (state.non = ""),
+	non: (state) => (state.non = ''),
 };
 
 export default {
