@@ -1,5 +1,5 @@
 const state = {
-	isAuthenticated: { isLoggedIn: false, isAdmin: false },
+	isAuthenticated: { isLoggedIn: false, isAdmin: false, Token: null },
 };
 
 const getters = {
@@ -12,14 +12,15 @@ const actions = {
 		let newStatus = {
 			isLoggedIn: data.isLoggedIn,
 			isAdmin: data.isAdmin,
+			Token: data.Token,
 		};
-		localStorage.setItem("Auth", JSON.stringify(newStatus));
-		commit("SetAndGetUserAuthStatus", newStatus);
+		localStorage.setItem('Auth', JSON.stringify(newStatus));
+		commit('SetAndGetUserAuthStatus', newStatus);
 	},
 	async GetUserAuth({ commit }) {
-		if (localStorage.getItem("Auth")) {
-			let AuthData = JSON.parse(localStorage.getItem("Auth"));
-			commit("SetAndGetUserAuthStatus", AuthData);
+		if (localStorage.getItem('Auth')) {
+			let AuthData = JSON.parse(localStorage.getItem('Auth'));
+			commit('SetAndGetUserAuthStatus', AuthData);
 		}
 	},
 };
@@ -27,7 +28,8 @@ const actions = {
 const mutations = {
 	SetAndGetUserAuthStatus: (state, UserAuthStatus) => (
 		(state.isAuthenticated.isAdmin = UserAuthStatus.isAdmin),
-		(state.isAuthenticated.isLoggedIn = UserAuthStatus.isLoggedIn)
+		(state.isAuthenticated.isLoggedIn = UserAuthStatus.isLoggedIn),
+		(state.isAuthenticated.Token = UserAuthStatus.Token)
 	),
 };
 

@@ -99,12 +99,13 @@
 </template>
 
 <script>
-import CategoriesView from "./Categories.vue";
-import SugProducts from "./SugProducts.vue";
-import { mapActions, mapGetters } from "vuex";
+import CategoriesView from './Categories.vue';
+import SugProducts from './SugProducts.vue';
+
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
-	name: "MainView",
+	name: 'MainView',
 	components: {
 		CategoriesView,
 		SugProducts,
@@ -119,7 +120,7 @@ export default {
 		};
 	},
 	computed: {
-		...mapGetters(["AllProducts"]),
+		...mapGetters(['AllProducts']),
 	},
 	created() {
 		this.GetProducts();
@@ -129,8 +130,8 @@ export default {
 		if (!this.$route.query.page) {
 			this.$router
 				.push({
-					path: "/",
-					name: "Main",
+					path: '/',
+					name: 'Main',
 					query: {
 						page: 1,
 					},
@@ -145,11 +146,11 @@ export default {
 	methods: {
 		// vuex
 		...mapActions([
-			"GetProducts",
-			"GetProdByPageNum",
-			"CheckIfInCart",
-			"SetNewCartItem",
-			"RemoveItemFromCart",
+			'GetProducts',
+			'GetProdByPageNum',
+			'CheckIfInCart',
+			'SetNewCartItem',
+			'RemoveItemFromCart',
 		]),
 		// vuex end
 		getProdData() {
@@ -159,13 +160,13 @@ export default {
 			for (let index = 0; index < data.length; index++) {
 				const ElId = data[index].id;
 				this.CheckIfInCart(ElId).then((res) => {
-					console.log("d", res);
+					console.log('d', res);
 					let objIndex = data.findIndex((obj) => obj.id == ElId);
 					data[objIndex].IsInCart = res;
 					this.isLoaded = true;
 				});
 			}
-			console.log("data", data);
+			console.log('data', data);
 			this.items = data;
 		},
 		AddToCart(id, index) {
@@ -184,7 +185,7 @@ export default {
 		},
 		MaxName(val) {
 			if (val.length < 12) return val;
-			return val.slice(0, 12) + "...";
+			return val.slice(0, 12) + '...';
 		},
 		Pagination() {
 			this.PageArray = [];
@@ -192,15 +193,15 @@ export default {
 			for (let index = this.PageSelected; index < scale; index++) {
 				this.PageArray.push(index);
 			}
-			console.log("Pagination", this.PageArray);
+			console.log('Pagination', this.PageArray);
 			this.getProdData();
 		},
 		ChangePage(page) {
 			this.GetProdByPageNum(page);
 			this.PageSelected = page;
 			this.$router.push({
-				path: "/",
-				name: "Main",
+				path: '/',
+				name: 'Main',
 				query: {
 					page: page,
 				},
@@ -209,95 +210,95 @@ export default {
 		},
 		NextPrevPage(con) {
 			if (con == false && this.PageSelected == 1) {
-				console.log("non");
+				console.log('non');
 			}
 			if (con == false && this.PageSelected !== 1) {
 				this.PageSelected = this.PageSelected - 1;
 				this.ChangePage(this.PageSelected);
 				this.Pagination();
 				this.getProdData();
-				console.log("n", this.PageSelected);
+				console.log('n', this.PageSelected);
 			}
 			if (con == true) {
 				this.PageSelected = this.PageSelected + 1;
 				this.ChangePage(this.PageSelected);
 				this.Pagination();
 				this.getProdData();
-				console.log("n ", this.PageSelected);
+				console.log('n ', this.PageSelected);
 			}
 		},
 		CheckCategory(cat) {
-			console.log("MainView cat id", cat);
+			console.log('MainView cat id', cat);
 			if (this.CheckedCat.indexOf(cat) === -1) {
 				this.CheckedCat.push(cat);
 			} else {
 				this.CheckedCat = this.CheckedCat.filter((e) => e !== cat);
 			}
-			console.log("cat id list", this.CheckedCat);
+			console.log('cat id list', this.CheckedCat);
 			this.items = [
 				{
-					id: "12",
-					name: "Cat i Phone 11 Pro s",
-					desc: "iphoe 11 pro back",
-					price: "599",
+					id: '12',
+					name: 'Cat i Phone 11 Pro s',
+					desc: 'iphoe 11 pro back',
+					price: '599',
 					imgSrc:
-						"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone11-black-select-2019?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1566956144418",
+						'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone11-black-select-2019?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1566956144418',
 				},
 				{
-					id: "14",
-					name: "Cat Huawei s",
-					desc: "Huawei Huawei",
-					price: "1000",
+					id: '14',
+					name: 'Cat Huawei s',
+					desc: 'Huawei Huawei',
+					price: '1000',
 					imgSrc:
-						"https://priceintanzania.com/wp-content/uploads/2020/09/Huawei-Enjoy-20-5G.jpg",
+						'https://priceintanzania.com/wp-content/uploads/2020/09/Huawei-Enjoy-20-5G.jpg',
 				},
 				{
-					id: "16",
-					name: "Cat Nike shirt s",
-					desc: "red Nike shirt",
-					price: "12",
+					id: '16',
+					name: 'Cat Nike shirt s',
+					desc: 'red Nike shirt',
+					price: '12',
 					imgSrc:
-						"https://www.marni.com/dw/image/v2/AAPK_PRD/on/demandware.static/-/Library-Sites-marni-shared/default/dwc934330e/Veja%20x%20Marni/01_FLYOUT_VEJA_300_225.jpg?sw=1500",
+						'https://www.marni.com/dw/image/v2/AAPK_PRD/on/demandware.static/-/Library-Sites-marni-shared/default/dwc934330e/Veja%20x%20Marni/01_FLYOUT_VEJA_300_225.jpg?sw=1500',
 				},
 				{
-					id: "18",
-					name: "Cat Timberland shirt",
-					desc: "black templerland shirt",
-					price: "20",
+					id: '18',
+					name: 'Cat Timberland shirt',
+					desc: 'black templerland shirt',
+					price: '20',
 					imgSrc:
-						"https://lp2.hm.com/hmgoepprod?set=source[/53/50/5350856a7ed6b4ed6617418a0fbbcef78cc6e6b2.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]",
+						'https://lp2.hm.com/hmgoepprod?set=source[/53/50/5350856a7ed6b4ed6617418a0fbbcef78cc6e6b2.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]',
 				},
 				{
-					id: "20",
-					name: "Cat Addidas shirt",
-					desc: "Addidas wight shirt",
-					price: "13",
+					id: '20',
+					name: 'Cat Addidas shirt',
+					desc: 'Addidas wight shirt',
+					price: '13',
 					imgSrc:
-						"https://cache.net-a-porter.com/images/products/1009804/1009804_in_2000_q80.jpg",
+						'https://cache.net-a-porter.com/images/products/1009804/1009804_in_2000_q80.jpg',
 				},
 				{
-					id: "24",
-					name: "Cat Nike shoes",
-					desc: "black Nike shoes",
-					price: "50",
+					id: '24',
+					name: 'Cat Nike shoes',
+					desc: 'black Nike shoes',
+					price: '50',
 					imgSrc:
-						"https://image.cnbcfm.com/api/v1/image/105680013-1547583426762nike1.jpg?v=1547583682",
+						'https://image.cnbcfm.com/api/v1/image/105680013-1547583426762nike1.jpg?v=1547583682',
 				},
 				{
-					id: "26",
-					name: "Cat Nikon Camera",
-					desc: "Nikon camera description",
-					price: "2400",
+					id: '26',
+					name: 'Cat Nikon Camera',
+					desc: 'Nikon camera description',
+					price: '2400',
 					imgSrc:
-						"https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRaTX9QMs46bmzI8t4I6LJq5qeFdWFPsYsF7DvLY48ydRVUDSsyAG39YTEcBK6l&usqp=CAc",
+						'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRaTX9QMs46bmzI8t4I6LJq5qeFdWFPsYsF7DvLY48ydRVUDSsyAG39YTEcBK6l&usqp=CAc',
 				},
 				{
-					id: "28",
-					name: "Cat Samsung Watch",
-					desc: "Samsung Glaxey Watch",
-					price: "5",
+					id: '28',
+					name: 'Cat Samsung Watch',
+					desc: 'Samsung Glaxey Watch',
+					price: '5',
 					imgSrc:
-						"https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLR0-Y4VqlhggjclgAfxSXaNEWKDc311lw9480NKAt727IplX1XqHqbVFOcsgfdg4LNhhwswRAFKp0&usqp=CAc",
+						'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLR0-Y4VqlhggjclgAfxSXaNEWKDc311lw9480NKAt727IplX1XqHqbVFOcsgfdg4LNhhwswRAFKp0&usqp=CAc',
 				},
 			];
 		},
