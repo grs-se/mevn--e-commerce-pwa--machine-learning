@@ -31,11 +31,11 @@ const actions = {
 		let defaultQuantity = 1;
 
 		if (localStorage.getItem('Cart')) {
-			let newItem = { _id: ID, quantity: defaultQuantity };
+			let newItem = { id: ID, quantity: defaultQuantity };
 			let CartData = JSON.parse(localStorage.getItem('Cart'));
-			let ItemData = CartData.findIndex((obj) => obj._id == ID);
+			let ItemData = CartData.findIndex((obj) => obj.id == ID);
 			if (ItemData !== -1) {
-				let objIndex = CartData.findIndex((obj) => obj._id == ID);
+				let objIndex = CartData.findIndex((obj) => obj.id == ID);
 				CartData[objIndex].quantity++;
 				localStorage.setItem('Cart', JSON.stringify(CartData));
 			} else {
@@ -52,9 +52,9 @@ const actions = {
 	async ChangeItemQuantity({ commit }, data) {
 		if (localStorage.getItem('Cart')) {
 			let CartData = JSON.parse(localStorage.getItem('Cart'));
-			let ItemData = CartData.findIndex((obj) => obj._id == data.ID);
+			let ItemData = CartData.findIndex((obj) => obj.id == data.ID);
 			if (ItemData !== -1) {
-				let objIndex = CartData.findIndex((obj) => obj._id == data.ID);
+				let objIndex = CartData.findIndex((obj) => obj.id == data.ID);
 				CartData[objIndex].quantity = data.quantity;
 				localStorage.setItem('Cart', JSON.stringify(CartData));
 				commit('SetNew', CartData);
@@ -64,10 +64,10 @@ const actions = {
 	async RemoveItemFromCart({ commit }, ID) {
 		if (localStorage.getItem('Cart')) {
 			let CartData = JSON.parse(localStorage.getItem('Cart'));
-			let ItemData = CartData.findIndex((obj) => obj._id == ID);
+			let ItemData = CartData.findIndex((obj) => obj.id == ID);
 			if (ItemData !== -1) {
 				CartData = CartData.filter((x) => {
-					return x._id !== ID;
+					return x.id !== ID;
 				});
 				localStorage.setItem('Cart', JSON.stringify(CartData));
 				commit('SetNew', CartData);
@@ -77,7 +77,7 @@ const actions = {
 	async CheckIfInCart({ commit }, ID) {
 		if (localStorage.getItem('Cart')) {
 			let CartData = JSON.parse(localStorage.getItem('Cart'));
-			let ItemData = CartData.findIndex((obj) => obj._id == ID);
+			let ItemData = CartData.findIndex((obj) => obj.id == ID);
 
 			let IsInCart;
 			if (ItemData !== -1) {

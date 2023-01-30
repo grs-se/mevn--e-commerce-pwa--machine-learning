@@ -18,30 +18,34 @@
 
 							<div
 								v-for="(item, index) in items"
-								:key="item.id"
+								:key="item._id"
 								class="card col-md-4"
 							>
-								<img class="card-img-top" :src="item.imgSrc" :alt="item.name" />
+								<img
+									class="card-img-top"
+									:src="item.product_img"
+									:alt="item.name"
+								/>
 								<div class="card-body">
 									<h6>£{{ item.price }}</h6>
 
 									<router-link
-										:to="{ path: '/SpecificItem', query: { ID: item.id } }"
+										:to="{ path: '/SpecificItem', query: { ID: item._id } }"
 									>
 										<h5 class="card-title vx">{{ MaxName(item.name) }}</h5>
 									</router-link>
 
 									<button
-										v-if="item.IsInCart"
+										v-if="!item.isInCart"
 										class="btn btn-danger"
-										@click="RemoveFromCart(item.id, index)"
+										@click="RemoveFromCart(item._id, index)"
 									>
 										<small>Remove From Cart</small>
 									</button>
 									<button
 										v-else
 										class="btn btn-primary"
-										@click="AddToCart(item.id, index)"
+										@click="AddToCart(item._id, index)"
 									>
 										Add To Cart
 									</button>
@@ -180,26 +184,12 @@ export default {
 						}
 					});
 			}
-			// this.isLoaded = false;
-			// let data = [];
-			// data = this.AllProducts;
-			// for (let index = 0; index < data.length; index++) {
-			// 	const ElId = data[index].id;
-			// 	this.CheckIfInCart(ElId).then((res) => {
-			// 		console.log('d', res);
-			// 		let objIndex = data.findIndex((obj) => obj.id == ElId);
-			// 		data[objIndex].IsInCart = res;
-			// 		this.isLoaded = true;
-			// 	});
-			// }
-			// console.log('data', data);
-			// this.items = data;
 		},
 		CheckIf_inCart() {
 			let newData = [];
 			for (let index = 0; index < this.items.length; index++) {
 				const element = this.items[index];
-				let CartData = JSON.parse(localStorage.getItem('cart'));
+				let CartData = JSON.parse(localStorage.getItem('Cart'));
 				let objIndex = CartData.findIndex((obj) => obj.id == element._id);
 				if (objIndex !== -1) {
 					element.isInCart = false;
@@ -212,14 +202,14 @@ export default {
 		},
 		AddToCart(id, index) {
 			this.isLoaded = false;
-			this.items[index].IsInCart = true;
+			this.items[index].isInCart = true;
 			this.isLoaded = true;
 			this.SetNewCartItem(id);
 			this.getProdData();
 		},
 		RemoveFromCart(id, index) {
 			this.isLoaded = false;
-			this.items[index].IsInCart = false;
+			this.items[index].isInCart = false;
 			this.isLoaded = true;
 			this.RemoveItemFromCart(id);
 			this.getProdData();
@@ -275,73 +265,18 @@ export default {
 			} else {
 				this.CheckedCat = this.CheckedCat.filter((e) => e !== cat);
 			}
-			console.log('cat id list', this.CheckedCat);
-			this.items = [
-				{
-					id: '12',
-					name: 'Cat i Phone 11 Pro s',
-					desc: 'iphoe 11 pro back',
-					price: '599',
-					imgSrc:
-						'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone11-black-select-2019?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1566956144418',
-				},
-				{
-					id: '14',
-					name: 'Cat Huawei s',
-					desc: 'Huawei Huawei',
-					price: '1000',
-					imgSrc:
-						'https://priceintanzania.com/wp-content/uploads/2020/09/Huawei-Enjoy-20-5G.jpg',
-				},
-				{
-					id: '16',
-					name: 'Cat Nike shirt s',
-					desc: 'red Nike shirt',
-					price: '12',
-					imgSrc:
-						'https://www.marni.com/dw/image/v2/AAPK_PRD/on/demandware.static/-/Library-Sites-marni-shared/default/dwc934330e/Veja%20x%20Marni/01_FLYOUT_VEJA_300_225.jpg?sw=1500',
-				},
-				{
-					id: '18',
-					name: 'Cat Timberland shirt',
-					desc: 'black templerland shirt',
-					price: '20',
-					imgSrc:
-						'https://lp2.hm.com/hmgoepprod?set=source[/53/50/5350856a7ed6b4ed6617418a0fbbcef78cc6e6b2.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]',
-				},
-				{
-					id: '20',
-					name: 'Cat Addidas shirt',
-					desc: 'Addidas wight shirt',
-					price: '13',
-					imgSrc:
-						'https://cache.net-a-porter.com/images/products/1009804/1009804_in_2000_q80.jpg',
-				},
-				{
-					id: '24',
-					name: 'Cat Nike shoes',
-					desc: 'black Nike shoes',
-					price: '50',
-					imgSrc:
-						'https://image.cnbcfm.com/api/v1/image/105680013-1547583426762nike1.jpg?v=1547583682',
-				},
-				{
-					id: '26',
-					name: 'Cat Nikon Camera',
-					desc: 'Nikon camera description',
-					price: '2400',
-					imgSrc:
-						'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRaTX9QMs46bmzI8t4I6LJq5qeFdWFPsYsF7DvLY48ydRVUDSsyAG39YTEcBK6l&usqp=CAc',
-				},
-				{
-					id: '28',
-					name: 'Cat Samsung Watch',
-					desc: 'Samsung Glaxey Watch',
-					price: '5',
-					imgSrc:
-						'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLR0-Y4VqlhggjclgAfxSXaNEWKDc311lw9480NKAt727IplX1XqHqbVFOcsgfdg4LNhhwswRAFKp0&usqp=CAc',
-				},
-			];
+			// console.log('cat id list', this.CheckedCat);
+			axios
+				.post(`${URL_backend}/products/ProdByCat/${this.PageSelected}`, {
+					cat: this.CheckedCat,
+				})
+				.then((res) => {
+					if (res.data.length !== 0) {
+						this.items = res.data;
+						this.CheckIf_inCart();
+					}
+				}),
+				(this.items = []);
 		},
 	},
 };
