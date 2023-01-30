@@ -1,48 +1,9 @@
+import axios from 'axios';
+const port = process.env.PORT || 3000;
+const URL_backend = `http://localhost:${port}/api`;
+
 const state = {
-	UsersList: [
-		{
-			id: 5,
-			name: "ahmed",
-			isAdmin: true,
-			imgSrc:
-				"https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg",
-		},
-		{
-			id: 6,
-			name: "hoda",
-			isAdmin: false,
-			imgSrc:
-				"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-mZmMcQKh388FZtY7ZLydeYeIEboJZv3zUw&usqp=CAU",
-		},
-		{
-			id: 7,
-			name: "mohamed",
-			isAdmin: true,
-			imgSrc:
-				"https://png.pngtree.com/element_our/png_detail/20181022/man-avatar-icon-professional-man-character-business-man-avatar-carton-symbol-png_206531.jpg",
-		},
-		{
-			id: 8,
-			name: "soki",
-			isAdmin: false,
-			imgSrc:
-				"https://previews.123rf.com/images/juliasart/juliasart1704/juliasart170400087/75406332-vector-girl-icon-woman-avatar-face-icon-cartoon-style-.jpg",
-		},
-		{
-			id: 9,
-			name: "mod",
-			isAdmin: true,
-			imgSrc:
-				"https://png.pngtree.com/element_our/png_detail/20181022/man-avatar-icon-professional-man-character-business-man-avatar-carton-symbol-png_206531.jpg",
-		},
-		{
-			id: 10,
-			name: "rana",
-			isAdmin: false,
-			imgSrc:
-				"https://previews.123rf.com/images/juliasart/juliasart1704/juliasart170400087/75406332-vector-girl-icon-woman-avatar-face-icon-cartoon-style-.jpg",
-		},
-	],
+	UsersList: [],
 };
 
 const getters = {
@@ -51,105 +12,49 @@ const getters = {
 
 const actions = {
 	async GetUserList({ commit }) {
-		const NewUserListData = [
-			{
-				id: 11,
-				name: "P ahmed",
-				isAdmin: true,
-				imgSrc:
-					"https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg",
-			},
-			{
-				id: 12,
-				name: "P hoda",
-				isAdmin: false,
-				imgSrc:
-					"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-mZmMcQKh388FZtY7ZLydeYeIEboJZv3zUw&usqp=CAU",
-			},
-			{
-				id: 13,
-				name: "P mohamed",
-				isAdmin: true,
-				imgSrc:
-					"https://png.pngtree.com/element_our/png_detail/20181022/man-avatar-icon-professional-man-character-business-man-avatar-carton-symbol-png_206531.jpg",
-			},
-			{
-				id: 14,
-				name: "P soki",
-				isAdmin: false,
-				imgSrc:
-					"https://previews.123rf.com/images/juliasart/juliasart1704/juliasart170400087/75406332-vector-girl-icon-woman-avatar-face-icon-cartoon-style-.jpg",
-			},
-			{
-				id: 15,
-				name: "P mod",
-				isAdmin: true,
-				imgSrc:
-					"https://png.pngtree.com/element_our/png_detail/20181022/man-avatar-icon-professional-man-character-business-man-avatar-carton-symbol-png_206531.jpg",
-			},
-			{
-				id: 16,
-				name: "P rana",
-				isAdmin: false,
-				imgSrc:
-					"https://previews.123rf.com/images/juliasart/juliasart1704/juliasart170400087/75406332-vector-girl-icon-woman-avatar-face-icon-cartoon-style-.jpg",
-			},
-		];
-		commit("SetUserList", NewUserListData);
+		let Tok = JSON.parse(localStorage.getItem('Auth').Token);
+
+		axios
+			.get(`${URL_backend}/users/${1}`, {
+				headers: { 'x-auth-token': Tok },
+			})
+			.then((res) => {
+				console.log('UserList', res.data);
+				commit('SetUserList', res.data);
+			});
 	},
 	async GetUserByPageNum({ commit }, PageNum) {
-		console.log("Page num", PageNum);
-		const NewUsDataArr = [
-			{
-				id: 17,
-				name: "X ahmed",
-				isAdmin: true,
-				imgSrc:
-					"https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg",
-			},
-			{
-				id: 18,
-				name: "X hoda",
-				isAdmin: false,
-				imgSrc:
-					"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-mZmMcQKh388FZtY7ZLydeYeIEboJZv3zUw&usqp=CAU",
-			},
-			{
-				id: 19,
-				name: "X mohamed",
-				isAdmin: true,
-				imgSrc:
-					"https://png.pngtree.com/element_our/png_detail/20181022/man-avatar-icon-professional-man-character-business-man-avatar-carton-symbol-png_206531.jpg",
-			},
-			{
-				id: 20,
-				name: "X soki",
-				isAdmin: false,
-				imgSrc:
-					"https://previews.123rf.com/images/juliasart/juliasart1704/juliasart170400087/75406332-vector-girl-icon-woman-avatar-face-icon-cartoon-style-.jpg",
-			},
-			{
-				id: 21,
-				name: "X mod",
-				isAdmin: true,
-				imgSrc:
-					"https://png.pngtree.com/element_our/png_detail/20181022/man-avatar-icon-professional-man-character-business-man-avatar-carton-symbol-png_206531.jpg",
-			},
-			{
-				id: 22,
-				name: "X rana",
-				isAdmin: false,
-				imgSrc:
-					"https://previews.123rf.com/images/juliasart/juliasart1704/juliasart170400087/75406332-vector-girl-icon-woman-avatar-face-icon-cartoon-style-.jpg",
-			},
-		];
-		commit("SetUserList", NewUsDataArr);
+		let Tok = JSON.parse(localStorage.getItem('Auth').Token);
+
+		axios
+			.get(`${URL_backend}/users/${PageNum}`, {
+				headers: { 'x-auth-token': Tok },
+			})
+			.then((res) => {
+				console.log('UserList by pageNum', res.data);
+				commit('SetUserList', res.data);
+			});
 	},
 	async EditOneUser({ commit }, data) {
-		let objIndex = state.UsersList.findIndex((obj) => obj.id == data.id);
-		let isAdmin = data.isAdmin;
-		let NewDataObj = { objIndex, isAdmin };
-		commit("EditOneUser", NewDataObj);
+		let Tok = JSON.parse(localStorage.getItem('Auth').Token);
+
+		axios
+			.put(
+				`${URL_backend}/users/Role`,
+				{ _id: data.ID, isAdmin: data.isAdmin },
+				{
+					headers: { 'x-auth-token': Tok },
+				}
+			)
+			.then(() => {
+				let objIndex = state.UsersList.findIndex((obj) => obj.id == data.id);
+				let isAdmin = data.isAdmin;
+				let NewDataObj = { objIndex, isAdmin };
+				commit('EditOneUser', NewDataObj);
+			})
+			.catch((err) => {
+				console.log(err.response.data.msg);
+			});
 	},
 };
 
