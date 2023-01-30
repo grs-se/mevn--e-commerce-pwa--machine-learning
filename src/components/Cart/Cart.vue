@@ -15,19 +15,19 @@
 
 					<!-- <tbody v-if="dataLoaded"></tbody> -->
 					<tbody>
-						<tr v-for="item in items" :key="item.id">
+						<tr v-for="item in items" :key="item._id">
 							<td class="col-sm-8 col-md-6">
 								<div class="media">
 									<a class="thumbnail pull-left" href="#">
 										<img
-											:src="item.imgSrc"
+											:src="item.product_img"
 											class="media-object"
 											style="width: 72px; height: 72px"
 										/>
 									</a>
 									<div class="media-body">
 										<h4 class="media-heading">
-											<a class="ab" @click="MoveToDetails(item.id)">{{
+											<a class="ab" @click="MoveToDetails(item._id)">{{
 												NameFilters(item.name)
 											}}</a>
 										</h4>
@@ -44,7 +44,7 @@
 									v-model="item.quantity"
 									type="number"
 									class="form-control"
-									@change="CheckNewQuantity(item.id, $event)"
+									@change="CheckNewQuantity(item._id, $event)"
 								/>
 							</td>
 							<td class="col-sm-1 col-md-1 text-center">
@@ -57,7 +57,7 @@
 								<button
 									type="button"
 									class="btn btn-danger"
-									@click="RemoveItem(item.id)"
+									@click="RemoveItem(item._id)"
 								>
 									<span class="fa fa-remove"></span> Remove
 								</button>
@@ -93,9 +93,13 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import axios from 'axios';
+const port = process.env.PORT || 3000;
+const URL_backend = `http://localhost:${port}/api`;
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
-	name: "CartView",
+	name: 'CartView',
 	data() {
 		return {
 			TotalItemsPrice: 0,
@@ -104,7 +108,7 @@ export default {
 		};
 	},
 	computed: {
-		...mapGetters(["AllCartItems"]),
+		...mapGetters(['AllCartItems']),
 	},
 	watch: {
 		items: function () {
@@ -119,62 +123,52 @@ export default {
 	},
 	methods: {
 		...mapActions([
-			"ChangeItemQuantity",
-			"RemoveItemFromCart",
-			"GetProdById",
-			"SetUserMovementCart",
+			'ChangeItemQuantity',
+			'RemoveItemFromCart',
+			'GetProdById',
+			'GetCartItem',
+			'SetUserMovementCart',
 		]),
 		//
 		GetProductsInCart: function () {
+			this.GetCartItem();
+
 			// this.dataLoaded = false;
 			let arr = this.AllCartItems;
 			let newArr = [];
 
 			for (let index = 0; index < arr.length; index++) {
 				const data = arr[index];
-				this.GetProdById(data.id).then((res) => {
-					res[0].quantity = data.quantity;
-					newArr.push(res[0]);
+				axios.get(`${URL_backend}/products/${data.id}`).then((res) => {
+					let objectIndex = this.AllCartItems.findIndex(
+						(obj) => obj.id == res.data._id
+					);
+
+					let Qu = this.AllCartItems[objectIndex].quantity;
+					res.data.quantity = Qu;
+					newArr.push(res.data);
 				});
 			}
 			this.items = newArr;
-			// this.dataLoaded = true;
-			console.log("Prod cart list", this.items);
-		},
-		DescFilters(value) {
-			return (
-				value.split(" ")[0] +
-				"" +
-				value.split(" ")[1] +
-				" " +
-				value.split(" ")[2] +
-				"..."
-			);
-		},
-		NameFilters(value) {
-			if (value.split(" ")[1]) {
-				return value.split(" ")[0] + "" + value.split(" ")[1];
-			} else {
-				return value.split(" ")[0];
-			}
+			// console.log('Prod cart list', this.items);
 		},
 		CheckNewQuantity: function (Id, e) {
 			if (e.target.value == 0) {
 				let newData = this.items.map((el) => {
-					if (el.id == Id) return Object.assign({}, el, { quantity: 1 });
+					if (el._id == Id) return Object.assign({}, el, { quantity: 1 });
 					return el;
 				});
 				this.items = newData;
 			} else {
 				let newData = this.items.map((el) => {
-					if (el.id == Id)
+					if (el._id == Id)
 						return Object.assign({}, el, {
 							quantity: e.target.value,
 						});
 					return el;
 				});
 				// change quantity on cart store
-				let NewD = { id: Id, quantity: Number(e.target.value) };
+				let NewD = { ID: Id, quantity: Number(e.target.value) };
 				this.ChangeItemQuantity(NewD);
 				// end cart
 				this.items = newData;
@@ -183,8 +177,8 @@ export default {
 		MoveToDetails: function (Id) {
 			this.$router
 				.push({
-					path: "/SpecificItem",
-					name: "SpecificItem",
+					path: '/SpecificItem',
+					name: 'SpecificItem',
 					query: {
 						ID: Id,
 					},
@@ -193,12 +187,12 @@ export default {
 		},
 		RemoveItem: function (Id) {
 			let newArr = this.items.filter((x) => {
-				return x.id != Id;
+				return x._id != Id;
 			});
 			this.items = newArr;
 
 			this.RemoveItemFromCart(Id);
-			this.AddToUserMovements();
+			this.AddToUserMovements(Id);
 		},
 		TotalPrice: function () {
 			const arrData = [];
@@ -212,10 +206,26 @@ export default {
 				return a + b;
 			}, 0);
 			this.TotalItemsPrice = lastNumber;
-			this.AddToUserMovements();
 		},
-		AddToUserMovements: function () {
-			this.SetUserMovementCart(this.items);
+		AddToUserMovements: function (id) {
+			this.SetUserMovementCart(id);
+		},
+		DescFilters(value) {
+			return (
+				value.split(' ')[0] +
+				'' +
+				value.split(' ')[1] +
+				' ' +
+				value.split(' ')[2] +
+				'...'
+			);
+		},
+		NameFilters(value) {
+			if (value.split(' ')[1]) {
+				return value.split(' ')[0] + '' + value.split(' ')[1];
+			} else {
+				return value.split(' ')[0];
+			}
 		},
 	},
 };

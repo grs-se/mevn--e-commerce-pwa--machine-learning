@@ -168,6 +168,7 @@ export default {
 					})
 					.then((res) => {
 						if (res.data.length) {
+							this.isLoaded = false;
 							this.items = res.data;
 							console.log('data after cat check', res.data);
 							this.CheckIf_inCart();
@@ -178,6 +179,7 @@ export default {
 					.get(`${URL_backend}/products/ProdByPage/${this.PageSelected}`)
 					.then((res) => {
 						if (res.data.length) {
+							this.isLoaded = false;
 							this.items = res.data;
 							console.log('data without cat', res.data);
 							this.CheckIf_inCart();
@@ -275,8 +277,7 @@ export default {
 						this.items = res.data;
 						this.CheckIf_inCart();
 					}
-				}),
-				(this.items = []);
+				});
 		},
 	},
 };
