@@ -16,7 +16,7 @@ const getters = {
 
 const actions = {
 	async SetUserMovementSearch({ commit }) {
-		let Tok = JSON.parse(localStorage.getItem('Auth').Token);
+		let Tok = JSON.parse(localStorage.getItem('Auth')).Token;
 
 		axios
 			.get(`${URL_backend}/machine_learning/SearchData`, {
@@ -28,7 +28,7 @@ const actions = {
 			});
 	},
 	async SetUserMovementCart({ commit }, data) {
-		let Tok = JSON.parse(localStorage.getItem('Auth').Token);
+		let Tok = JSON.parse(localStorage.getItem('Auth')).Token;
 
 		axios
 			.patch(
@@ -44,7 +44,7 @@ const actions = {
 			});
 	},
 	async SetUserMovementItems({ commit }, data) {
-		let Tok = JSON.parse(localStorage.getItem('Auth').Token);
+		let Tok = JSON.parse(localStorage.getItem('Auth')).Token;
 
 		axios
 			.patch(`${URL_backend}/machine_learning/ml_products/${data}`, {

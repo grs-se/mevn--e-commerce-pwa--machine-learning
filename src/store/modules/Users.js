@@ -12,7 +12,7 @@ const getters = {
 
 const actions = {
 	async GetUserList({ commit }) {
-		let Tok = JSON.parse(localStorage.getItem('Auth').Token);
+		let Tok = JSON.parse(localStorage.getItem('Auth')).Token;
 
 		axios
 			.get(`${URL_backend}/users/${1}`, {
@@ -24,7 +24,7 @@ const actions = {
 			});
 	},
 	async GetUserByPageNum({ commit }, PageNum) {
-		let Tok = JSON.parse(localStorage.getItem('Auth').Token);
+		let Tok = JSON.parse(localStorage.getItem('Auth')).Token;
 
 		axios
 			.get(`${URL_backend}/users/${PageNum}`, {
@@ -36,7 +36,7 @@ const actions = {
 			});
 	},
 	async EditOneUser({ commit }, data) {
-		let Tok = JSON.parse(localStorage.getItem('Auth').Token);
+		let Tok = JSON.parse(localStorage.getItem('Auth')).Token;
 
 		axios
 			.put(

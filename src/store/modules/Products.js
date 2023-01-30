@@ -30,7 +30,7 @@ const actions = {
 		});
 	},
 	async ADD_NEW_PRODUCT({ commit }, data) {
-		let Tok = JSON.parse(localStorage.getItem('Auth').Token);
+		let Tok = JSON.parse(localStorage.getItem('Auth')).Token;
 		axios
 			.post(`${URL_backend}/products`, data, {
 				headers: { 'x-auth-token': Tok },
@@ -43,7 +43,7 @@ const actions = {
 			});
 	},
 	async EditOneProduct({ commit }, data) {
-		let Tok = JSON.parse(localStorage.getItem('Auth').Token);
+		let Tok = JSON.parse(localStorage.getItem('Auth')).Token;
 		axios
 			.put(`${URL_backend}/products/${data._id}`, data, {
 				headers: { 'x-auth-token': Tok },
@@ -70,7 +70,7 @@ const actions = {
 			});
 	},
 	async DeleteOneProduct({ commit }, data) {
-		let Tok = JSON.parse(localStorage.getItem('Auth').Token);
+		let Tok = JSON.parse(localStorage.getItem('Auth')).Token;
 		axios
 			.delete(`${URL_backend}/products/${data._id}`, data, {
 				headers: { 'x-auth-token': Tok },
