@@ -77,6 +77,7 @@ const actions = {
 			});
 	},
 	async GetCatById({ commit }, ID) {
+		let Tok = JSON.parse(localStorage.getItem('Auth').Token);
 		axios
 			.get(`${URL_backend}/categories/${ID}`, {
 				headers: { 'x-auth-token': Tok },

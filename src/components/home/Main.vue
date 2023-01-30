@@ -101,8 +101,11 @@
 <script>
 import CategoriesView from './Categories.vue';
 import SugProducts from './SugProducts.vue';
-
 import { mapActions, mapGetters } from 'vuex';
+
+import axios from 'axios';
+const port = process.env.PORT || 3000;
+const URL_backend = `http://localhost:${port}/api`;
 
 export default {
 	name: 'MainView',
@@ -154,20 +157,58 @@ export default {
 		]),
 		// vuex end
 		getProdData() {
-			this.isLoaded = false;
-			let data = [];
-			data = this.AllProducts;
-			for (let index = 0; index < data.length; index++) {
-				const ElId = data[index].id;
-				this.CheckIfInCart(ElId).then((res) => {
-					console.log('d', res);
-					let objIndex = data.findIndex((obj) => obj.id == ElId);
-					data[objIndex].IsInCart = res;
-					this.isLoaded = true;
-				});
+			if (this.CheckedCat.length !== 0) {
+				axios
+					.post(`${URL_backend}/products/ProdByCat/${this.PageSelected}`, {
+						cat: this.CheckedCat,
+					})
+					.then((res) => {
+						if (res.data.length) {
+							this.items = res.data;
+							console.log('data after cat check', res.data);
+							this.CheckIf_inCart();
+						}
+					});
+			} else {
+				axios
+					.get(`${URL_backend}/products/ProdByPage/${this.PageSelected}`)
+					.then((res) => {
+						if (res.data.length) {
+							this.items = res.data;
+							console.log('data without cat', res.data);
+							this.CheckIf_inCart();
+						}
+					});
 			}
-			console.log('data', data);
-			this.items = data;
+			// this.isLoaded = false;
+			// let data = [];
+			// data = this.AllProducts;
+			// for (let index = 0; index < data.length; index++) {
+			// 	const ElId = data[index].id;
+			// 	this.CheckIfInCart(ElId).then((res) => {
+			// 		console.log('d', res);
+			// 		let objIndex = data.findIndex((obj) => obj.id == ElId);
+			// 		data[objIndex].IsInCart = res;
+			// 		this.isLoaded = true;
+			// 	});
+			// }
+			// console.log('data', data);
+			// this.items = data;
+		},
+		CheckIf_inCart() {
+			let newData = [];
+			for (let index = 0; index < this.items.length; index++) {
+				const element = this.items[index];
+				let CartData = JSON.parse(localStorage.getItem('cart'));
+				let objIndex = CartData.findIndex((obj) => obj.id == element._id);
+				if (objIndex !== -1) {
+					element.isInCart = false;
+				} else {
+					element.isInCart = true;
+				}
+				newData.push(element);
+			}
+			this.isLoaded = true;
 		},
 		AddToCart(id, index) {
 			this.isLoaded = false;
