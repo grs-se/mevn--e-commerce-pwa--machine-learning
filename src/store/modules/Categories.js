@@ -23,7 +23,7 @@ const actions = {
 		});
 	},
 	async ADD_NEW_CAT({ commit }, data) {
-		let Tok = JSON.parge(localStorage.getItem('Auth').Token);
+		let Tok = JSON.parse(localStorage.getItem('Auth').Token);
 		axios
 			.post(
 				`${URL_backend}/categories`,
@@ -37,7 +37,7 @@ const actions = {
 			});
 	},
 	async EditOneCat({ commit }, data) {
-		let Tok = JSON.parge(localStorage.getItem('Auth').Token);
+		let Tok = JSON.parse(localStorage.getItem('Auth').Token);
 		axios
 			.put(
 				`${URL_backend}/categories/${data.ID}`,
@@ -59,7 +59,7 @@ const actions = {
 			});
 	},
 	async DeleteOneCat({ commit }, data) {
-		let Tok = JSON.parge(localStorage.getItem('Auth').Token);
+		let Tok = JSON.parse(localStorage.getItem('Auth').Token);
 		axios
 			.delete(`${URL_backend}/categories/${data.ID}`, {
 				headers: { 'x-auth-token': Tok },
@@ -77,7 +77,6 @@ const actions = {
 			});
 	},
 	async GetCatById({ commit }, ID) {
-		let Tok = JSON.parge(localStorage.getItem('Auth').Token);
 		axios
 			.get(`${URL_backend}/categories/${ID}`, {
 				headers: { 'x-auth-token': Tok },
