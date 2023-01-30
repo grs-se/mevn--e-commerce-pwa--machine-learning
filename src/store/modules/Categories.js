@@ -8,7 +8,7 @@ const state = {
 };
 
 const getters = {
-	AllCategories: (state) => state.CategoriesList,
+	allCategories: (state) => state.CategoriesList,
 };
 
 const actions = {

@@ -1,16 +1,20 @@
 <template>
 	<div>
 		<ul class="list-group list-group-flush">
-			<li v-for="item in CategoriesList" :key="item.id" class="list-group-item">
+			<li
+				v-for="item in CategoriesList"
+				:key="item._id"
+				class="list-group-item"
+			>
 				<!-- Default checked -->
 				<div class="custom-control custom-checkbox">
 					<input
-						:id="item.id"
+						:id="item._id"
 						type="checkbox"
 						class="custom-control-input"
-						@change="CheckCategory(item.id)"
+						@change="CheckCategory(item._id)"
 					/>
-					<label class="custom-control-label" :for="item.id">{{
+					<label class="custom-control-label" :for="item._id">{{
 						item.name
 					}}</label>
 				</div>
@@ -20,32 +24,38 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions } from 'vuex';
 export default {
-	name: "CategoriesView",
-	emits: ["CheckCategory"],
+	name: 'CategoriesView',
+	emits: ['CheckCategory'],
 	data() {
 		return {
 			CategoriesList: [],
 		};
 	},
 	computed: {
-		...mapGetters(["AllCategories"]),
+		...mapGetters(['allCategories']),
 	},
 	created() {
 		this.GetCategories();
+		this.$store.watch(() => {
+			this.GetCatListFromStore();
+		});
 	},
 	mounted() {
-		this.CategoriesList = this.AllCategories;
+		this.CategoriesList = this.allCategories;
 	},
 
 	methods: {
 		// vuex
-		...mapActions(["GetCategories"]),
+		...mapActions(['GetCategories']),
 		// vuex end
 		CheckCategory(cat) {
-			console.log("cat id", cat);
-			this.$emit("CheckCategory", cat);
+			console.log('cat id', cat);
+			this.$emit('CheckCategory', cat);
+		},
+		GetCatListFromStore: function () {
+			this.CategoriesList = this.allCategories;
 		},
 	},
 };
