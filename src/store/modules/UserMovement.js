@@ -1,3 +1,7 @@
+import axios from 'axios';
+const port = process.env.PORT || 3000;
+const URL_backend = `http://localhost:${port}/api`;
+
 const state = {
 	UserMovement: {
 		Search: [],
@@ -11,14 +15,45 @@ const getters = {
 };
 
 const actions = {
-	async SetUserMovementSearch({ commit }, data) {
-		commit("SetUserMovementSearch", data);
+	async SetUserMovementSearch({ commit }) {
+		let Tok = JSON.parse(localStorage.getItem('Auth').Token);
+
+		axios
+			.get(`${URL_backend}/machine_learning/SearchData`, {
+				headers: { 'x-auth-token': Tok },
+			})
+			.then((res) => {
+				console.log('Result', res.data);
+				commit('SetUserMovementSearch', '');
+			});
 	},
 	async SetUserMovementCart({ commit }, data) {
-		commit("SetUserMovementCart", data);
+		let Tok = JSON.parse(localStorage.getItem('Auth').Token);
+
+		axios
+			.patch(
+				`${URL_backend}/machine_learning/ml_cart/${data}`,
+				{},
+				{
+					headers: { 'x-auth-token': Tok },
+				}
+			)
+			.then((res) => {
+				console.log('Result', res.data);
+				commit('SetUserMovementCart', data);
+			});
 	},
 	async SetUserMovementItems({ commit }, data) {
-		commit("SetUserMovementItems", data);
+		let Tok = JSON.parse(localStorage.getItem('Auth').Token);
+
+		axios
+			.patch(`${URL_backend}/machine_learning/ml_products/${data}`, {
+				headers: { 'x-auth-token': Tok },
+			})
+			.then((res) => {
+				console.log('Result', res.data);
+				commit('SetUserMovementItems', data);
+			});
 	},
 };
 
