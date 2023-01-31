@@ -152,8 +152,10 @@ export default {
 					Gender: userData.gender,
 					BDay: userData.birth_day,
 					imgSrc: userData.profile_img,
+					// isAdmin: userData.isAdmin,
 				};
 				this.UserData = newArr;
+				// console.log(this.UserData);
 			})
 			.catch((err) => {
 				console.log('err', err.response.data.msg);

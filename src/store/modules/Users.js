@@ -47,14 +47,21 @@ const actions = {
 				}
 			)
 			.then(() => {
-				let objIndex = state.UsersList.findIndex((obj) => obj.id == data.id);
+				// console.log('data', data);
+				let objIndex = state.UsersList.findIndex(
+					// BE CAREFUL WITH THIS LINE!!!
+					// data._id does not return an error but may sometimes turn all users to isAdmin!!
+					// ((obj) => obj._id == data.id);
+					//
+					(obj) => obj.id == data._id
+				);
 				let isAdmin = data.isAdmin;
 				let NewDataObj = { objIndex, isAdmin };
 				commit('EditOneUser', NewDataObj);
-			})
-			.catch((err) => {
-				console.log(err.response.data.msg);
 			});
+		// .catch((err) => {
+		// console.log(err.response.data.msg);
+		// });
 	},
 };
 

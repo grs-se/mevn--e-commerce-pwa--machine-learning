@@ -34,7 +34,7 @@ export default {
 		};
 	},
 	computed: {
-		...mapGetters(['allCategories']),
+		...mapGetters(['AllCategories']),
 	},
 	created() {
 		this.GetCategories();
@@ -43,7 +43,7 @@ export default {
 		});
 	},
 	mounted() {
-		this.CategoriesList = this.allCategories;
+		this.CategoriesList = this.AllCategories;
 	},
 
 	methods: {
@@ -55,7 +55,7 @@ export default {
 			this.$emit('CheckCategory', cat);
 		},
 		GetCatListFromStore: function () {
-			this.CategoriesList = this.allCategories;
+			this.CategoriesList = this.AllCategories;
 		},
 	},
 };

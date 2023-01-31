@@ -8,7 +8,7 @@ const state = {
 };
 
 const getters = {
-	allCategories: (state) => state.CategoriesList,
+	AllCategories: (state) => state.CategoriesList,
 };
 
 const actions = {
@@ -48,9 +48,9 @@ const actions = {
 			)
 			.then(() => {
 				let objIndex = state.CategoriesList.findIndex(
-					(obj) => obj.id === data.ID
+					(obj) => obj._id === data.ID
 				);
-				let name = data.name;
+				let name = data.NewCatName;
 				let newDataObj = { objIndex, name };
 				commit('EditOneCategory', newDataObj);
 			})
@@ -68,7 +68,7 @@ const actions = {
 				console.log('Deleted Cat successfully', res.data);
 
 				let newArrDel = state.CategoriesList.filter((x) => {
-					return x.id != data.ID;
+					return x._id != data.ID;
 				});
 				commit('ResetAndDelete', newArrDel);
 			})

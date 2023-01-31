@@ -13,7 +13,7 @@
 				New Category
 			</button>
 			<!-- add new cat end -->
-			<ul v-for="data in NewCatList" :key="data.id" class="list-group m">
+			<ul v-for="data in NewCatList" :key="data._id" class="list-group m">
 				<li
 					class="z list-group-item d-flex justify-content-between align-items-center"
 				>
@@ -30,7 +30,7 @@
 						<button
 							v-if="data.isEdit"
 							class="form-control btn btn-success"
-							@click="SaveAfterEdit(data.id, data)"
+							@click="SaveAfterEdit(data._id, data)"
 						>
 							Save
 						</button>
@@ -38,7 +38,7 @@
 						<button
 							v-if="!data.isEdit"
 							class="form-control btn btn-danger"
-							@click="Delete(data.id)"
+							@click="Delete(data._id)"
 						>
 							Delete
 						</button>
@@ -56,21 +56,21 @@
 </template>
 
 <script>
-import PaginationStore from "./PaginationStore.vue";
-import { mapActions, mapGetters } from "vuex";
+import PaginationStore from './PaginationStore.vue';
+import { mapActions, mapGetters } from 'vuex';
 export default {
-	name: "CategoriesView",
+	name: 'CategoriesView',
 	components: { PaginationStore },
 	data() {
 		return {
 			CatList: [],
 			NewCatList: [], // the main data arr
-			NewAddedCat: "",
+			NewAddedCat: '',
 			PageNumber: null,
 		};
 	},
 	computed: {
-		...mapGetters(["AllCategories"]),
+		...mapGetters(['AllCategories']),
 	},
 	mounted() {
 		this.GetCatListFromStore();
@@ -78,19 +78,25 @@ export default {
 	},
 	created() {
 		this.GetCategories();
+		this.$store.watch((state) => {
+			console.log('store change cat.vue', state);
+			this.GetCatListFromStore();
+			this.AddEditToCatList();
+		});
 	},
 	methods: {
 		...mapActions([
-			"ADD_NEW_CAT",
-			"EditOneCat",
-			"DeleteOneCat",
-			"GetCategories",
+			'ADD_NEW_CAT',
+			'EditOneCat',
+			'DeleteOneCat',
+			'GetCategories',
 		]),
 		GetCatListFromStore: function () {
 			this.CatList = this.AllCategories;
 		},
 		SaveAfterEdit: function (ID, ProjectData) {
-			let data = { ID, name: ProjectData["name"] };
+			// console.log('id', ID, ProjectData);
+			let data = { ID, NewCatName: ProjectData['name'] };
 			this.EditOneCat(data);
 			this.AddEditToCatList();
 		},
@@ -114,9 +120,9 @@ export default {
 			// add isEdit to the array
 			let newData = [];
 			for (let index = 0; index < this.CatList.length; index++) {
-				let id = this.CatList[index]["id"];
-				let name = this.CatList[index]["name"];
-				newData.push({ id, name, isEdit: false });
+				let _id = this.CatList[index]['_id'];
+				let name = this.CatList[index]['name'];
+				newData.push({ _id, name, isEdit: false });
 			}
 			this.NewCatList = []; // empty the arr
 			this.NewCatList = newData;

@@ -2,24 +2,24 @@
 	<center>
 		<div>
 			<h5 class="btn-danger">Users</h5>
-			<ul v-for="data in UsersList" :key="data.id" class="list-group m">
+			<ul v-for="data in UsersList" :key="data._id" class="list-group m">
 				<li
 					class="list-group-item d-flex justify-content-between align-items-center"
 				>
-					<img class="userimg" alt="" :src="data.imgSrc" />
+					<img class="userimg" alt="" :src="data.profile_img" />
 					<span v-if="!data.isAdmin" class="badge badge-primary badge-pill"
 						>User</span
 					>
 					<span v-if="data.isAdmin" class="badge badge-warning badge-pill"
 						>Admin</span
 					>
-					{{ data.name }}
+					{{ data.first_name }}
 					<div class="form-group">
 						<select
 							id="exampleFormControlSelect1"
 							v-model="data.isAdmin"
 							class="form-control"
-							@change="ChangeUserRole(data.id, data.isAdmin)"
+							@change="ChangeUserRole(data._id, data.isAdmin)"
 						>
 							<option :value="false" class="btn btn-primary">User</option>
 							<option :value="true" class="btn btn-warning">Admin</option>
@@ -37,10 +37,10 @@
 </template>
 
 <script>
-import PaginationStore from "./PaginationStore.vue";
-import { mapActions, mapGetters } from "vuex";
+import PaginationStore from './PaginationStore.vue';
+import { mapActions, mapGetters } from 'vuex';
 export default {
-	name: "UsersView",
+	name: 'UsersView',
 	components: { PaginationStore },
 	data() {
 		return {
@@ -49,14 +49,17 @@ export default {
 		};
 	},
 	computed: {
-		...mapGetters(["AllUsers"]),
+		...mapGetters(['AllUsers']),
 	},
 	created() {
 		this.GetUserList();
-		this.GetUsersListFromStore();
+		this.$store.watch((state) => {
+			console.log('store change', state);
+			this.GetUsersListFromStore();
+		});
 	},
 	methods: {
-		...mapActions(["GetUserList", "EditOneUser", "GetUserByPageNum"]),
+		...mapActions(['GetUserList', 'EditOneUser', 'GetUserByPageNum']),
 		GetUsersListFromStore: function () {
 			this.UsersList = this.AllUsers;
 		},
