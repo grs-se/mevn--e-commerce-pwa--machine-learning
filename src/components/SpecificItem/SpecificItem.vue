@@ -4,7 +4,7 @@
 			<div class="card">
 				<img
 					class="card-img-top"
-					:src="ResultItems.imgSrc"
+					:src="ResultItems.product_img"
 					alt="Card image cap"
 				/>
 				<div class="card-body">
@@ -33,21 +33,26 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions } from 'vuex';
+
+import axios from 'axios';
+const port = process.env.PORT || 3000;
+const URL_backend = `http://localhost:${port}/api`;
 
 export default {
-	name: "SpecificItem",
+	name: 'SpecificItem',
 	data() {
 		return {
 			ResultItems: {
-				id: "",
-				imgSrc: "",
-				name: "",
+				id: '',
+				imgSrc: '',
+				name: '',
 				price: null,
-				desc: "",
-				CatName: "",
+				desc: '',
+				CatName: '',
 				InCart: true,
 			},
+			itemData: '',
 			isLoaded: Boolean,
 		};
 	},
@@ -56,42 +61,44 @@ export default {
 	},
 	methods: {
 		...mapActions([
-			"GetProdById",
-			"GetCatById",
-			"GetCategories",
-			"CheckIfInCart",
-			"SetNewCartItem",
-			"RemoveItemFromCart",
-			"SetUserMovementItem",
+			'GetProdById',
+			'GetCatById',
+			'GetCategories',
+			'CheckIfInCart',
+			'SetNewCartItem',
+			'RemoveItemFromCart',
+			'SetUserMovementItem',
+			'SetUserMovementCart',
 		]),
 
 		async GetRouteData() {
-			this.isLoaded = false;
-			//
-			this.GetCategories();
 			let ProdID = this.$route.query.ID;
-			await this.GetProdById(ProdID).then((res) => {
-				console.log("specific item", res);
-				this.ResultItems.id = ProdID;
-				this.ResultItems.name = res[0].name;
-				this.ResultItems.desc = res[0].desc;
-				this.ResultItems.price = res[0].price;
-				this.ResultItems.CatName = res[0].CatName;
-				this.ResultItems.imgSrc = res[0].imgSrc;
-				this.GetCatById(res[0].CatId).then((res) => {
-					console.log("res", res);
-					this.ResultItems.CatName = res[0].name;
-				});
+			await axios.get(`${URL_backend}/products/${ProdID}`).then((res) => {
+				this.ResetDataAndGetCat(res.data);
 			});
 			// check if in cart
 			await this.CheckIfInCart(ProdID).then((res) => {
 				this.ResultItems.InCart = res;
-				console.log("res X", res);
 				this.isLoaded = true;
+				this.AddToUserMovement();
 			});
-
-			// Set user movement
-			this.SetUserMovementItem(ProdID);
+		},
+		//  reset data
+		ResetDataAndGetCat(data) {
+			// set item data
+			this.ResultItems.id = data['_id'];
+			this.ResultItems.imgSrc = data['product_img'];
+			this.ResultItems.name = data['name'];
+			this.ResultItems.price = data['price'];
+			this.ResultItems.desc = data['desc'];
+			// get set item cat
+			let catId = data['prod_categories']._id;
+			axios.get(`${URL_backend}/categories/${catId}`).then((res) => {
+				this.ResultItems.CatName = res.data.name;
+			});
+		},
+		AddToUserMovement() {
+			this.SetUserMovementItem(this.ResultItems.id);
 		},
 		async ChangeItemStatus() {
 			this.isLoaded = false;
@@ -105,6 +112,7 @@ export default {
 				this.isLoaded = true;
 				this.RemoveItemFromCart(ProdID);
 			}
+			this.SetUserMovementCart(ProdID);
 		},
 	},
 };

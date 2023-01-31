@@ -43,7 +43,7 @@ const actions = {
 				commit('SetUserMovementCart', data);
 			});
 	},
-	async SetUserMovementItems({ commit }, data) {
+	async SetUserMovementItem({ commit }, data) {
 		let Tok = JSON.parse(localStorage.getItem('Auth')).Token;
 
 		axios

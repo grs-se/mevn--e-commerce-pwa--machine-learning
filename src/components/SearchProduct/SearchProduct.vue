@@ -42,10 +42,11 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 import axios from 'axios';
 const port = process.env.PORT || 3000;
 const URL_backend = `http://localhost:${port}/api`;
-import { mapActions } from 'vuex';
 
 export default {
 	data() {
