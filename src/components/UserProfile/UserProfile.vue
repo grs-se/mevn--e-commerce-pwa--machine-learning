@@ -113,7 +113,7 @@
 				</div>
 			</div>
 			<!-- edit mode end -->
-			<button class="btn btn-danger">Delete Account</button>
+			<button class="btn btn-danger" @click="DelAccount">Delete Account</button>
 		</center>
 	</div>
 </template>
@@ -201,6 +201,29 @@ export default {
 		onFileChange(e) {
 			this.UserData.imgSrc = URL.createObjectURL(e.target.files[0]);
 			this.files = e.target.files;
+		},
+		DelAccount() {
+			const token = JSON.parse(localStorage.getItem('Auth')).Token;
+
+			axios
+				.delete(`${URL_backend}/users/`, {
+					headers: {
+						'x-auth-token': token,
+					},
+				})
+				.then((res) => {
+					console.log('Deleted user successfully', res.data);
+					this.LogOutUser();
+				})
+				.catch((err) => {
+					console.log('err', err.response.data.msg);
+				});
+		},
+		LogOutUser() {
+			let data = { isLoggedIn: false, isAdmin: false };
+			// this.auth = { isUserLoggedIn: false, isUserAdmin: false };
+			this.SetUserAuth(data);
+			this.$router.push({ path: '/' });
 		},
 	},
 };
