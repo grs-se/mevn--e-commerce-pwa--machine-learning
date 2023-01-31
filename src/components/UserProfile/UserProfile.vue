@@ -12,7 +12,7 @@
 			</h4>
 			<!-- show mode -->
 			<div v-if="EditMode">
-				<img class="iimg col" alt="" />
+				<img class="img col col-sm-2" alt="" :src="UserData.imgSrc" />
 				<div class="container">
 					<div class="row">
 						<div class="col-md-8 d">
@@ -43,13 +43,13 @@
 			<!-- show mode end -->
 			<!-- edit mode start -->
 			<div v-if="!EditMode">
-				<img class="iimg col" :src="UserData.imgSrc" alt="" />
+				<img class="img col" :src="UserData.imgSrc" alt="" />
 				<div class="fileUpload">
 					<input
 						type="file"
 						class="upload"
 						enctype="multipart/form-data"
-						@change="OnFileChange"
+						@change="onFileChange"
 					/>
 					<span>Upload</span>
 				</div>
@@ -84,6 +84,7 @@
 									class="form-control"
 									placeholder="email"
 									type="email"
+									disabled
 								/>
 							</h3>
 							<h3>
@@ -179,12 +180,27 @@ export default {
 					PostData.append('image', this.files[i]);
 				}
 			}
+
+			axios
+				.put(`${URL_backend}/users/`, PostData, {
+					headers: {
+						'x-auth-token': token,
+						'Content-Type': 'multipart/form-data',
+					},
+				})
+				.then((res) => {
+					console.log('res updated user data', res.data);
+				})
+				.catch((err) => {
+					console.log('err', err.response.data.msg);
+				});
 		},
 		EditData: function () {
 			this.EditMode = !this.EditMode;
 		},
-		OnFileChange(e) {
+		onFileChange(e) {
 			this.UserData.imgSrc = URL.createObjectURL(e.target.files[0]);
+			this.files = e.target.files;
 		},
 	},
 };
