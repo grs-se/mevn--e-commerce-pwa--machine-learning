@@ -3,7 +3,7 @@
 		<center>
 			<h3 v-if="BigData.length > 0" class="hS">Items that You may Like</h3>
 		</center>
-		<div v-if="isLoad" class="container">
+		<div class="container">
 			<transition-group v-if="isLoad" name="fade" tag="div" class="row">
 				<div v-for="item in BigData" :key="item._id" class="col">
 					<div class="card">

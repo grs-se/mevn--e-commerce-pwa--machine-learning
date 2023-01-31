@@ -118,27 +118,67 @@
 </template>
 
 <script>
+import axios from 'axios';
+const port = process.env.PORT || 3000;
+const URL_backend = `http://localhost:${port}/api`;
+
+import { mapActions } from 'vuex';
+
 export default {
-	name: "UserProfile",
+	name: 'UserProfile',
 	data() {
 		return {
 			EditMode: true,
-			UserData: {
-				userId: "3",
-				firstName: "Josh",
-				lastName: "Smith",
-				Email: "joshsmith@email.com",
-				Gender: "male",
-				Bday: "1-1-1992",
-				imgSrc:
-					"https://www.seekpng.com/png/full/356-3562377_personal-user.png",
-			},
+			UserData: {},
+			files: null,
+			fileReaderBase64: null,
 		};
 	},
+	created() {
+		// get user data from server
+		const token = JSON.parse(localStorage.getItem('Auth')).Token;
+		axios
+			.get(`${URL_backend}/users/UserData`, {
+				headers: { 'x-auth-token': token },
+			})
+			.then((res) => {
+				let userData = res.data;
+				let newArr = {
+					userID: userData._id,
+					firstName: userData.first_name,
+					lastName: userData.last_name,
+					Email: userData.email,
+					Gender: userData.gender,
+					BDay: userData.birth_day,
+					imgSrc: userData.profile_img,
+				};
+				this.UserData = newArr;
+			})
+			.catch((err) => {
+				console.log('err', err.response.data.msg);
+			});
+	},
 	methods: {
+		...mapActions(['SetUserAuth']),
+		//
 		SaveData: function () {
 			this.EditMode = !this.EditMode;
-			console.log("Edit User Data", this.UserData);
+			// console.log('Edit User Data', this.UserData);
+			const token = JSON.parse(localStorage.getItem('Auth')).Token;
+
+			const PostData = new FormData();
+			PostData.append('first_name', this.UserData.firstName);
+			PostData.append('last_name', this.UserData.lastName);
+			PostData.append('email', this.UserData.Email);
+			PostData.append('gender', this.UserData.Gender);
+			PostData.append('birth_day', this.UserData.Bday);
+			PostData.append('profile_img', this.UserData.imgSrc);
+
+			if (this.files !== null) {
+				for (const i of Object.keys(this.files)) {
+					PostData.append('image', this.files[i]);
+				}
+			}
 		},
 		EditData: function () {
 			this.EditMode = !this.EditMode;
@@ -205,7 +245,7 @@ export default {
 	cursor: pointer;
 }
 
-input[type="file"] {
+input[type='file'] {
 	position: fixed;
 	right: 100%;
 	bottom: 100%;
