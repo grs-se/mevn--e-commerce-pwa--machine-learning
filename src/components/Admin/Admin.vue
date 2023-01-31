@@ -34,9 +34,9 @@
 									'list-group-item',
 									'list-group-item-action',
 									'v',
-									ChangeClassAndComponent('Products') ? 'active' : '',
+									ChangeClassAndComponent('MainProd') ? 'active' : '',
 								]"
-								@click="ChangePage('Products')"
+								@click="ChangePage('MainProd')"
 							>
 								Products
 							</a>
@@ -64,9 +64,9 @@
 							key="Categories"
 						/>
 						<Chart v-if="ChangeClassAndComponent('Chart')" key="Chart" />
-						<Products
-							v-if="ChangeClassAndComponent('Products')"
-							key="Products"
+						<MainProd
+							v-if="ChangeClassAndComponent('MainProd')"
+							key="MainProd"
 						/>
 					</transition-group>
 				</div>
@@ -76,26 +76,26 @@
 </template>
 
 <script>
-import Categories from "./Categories.vue";
-import Chart from "./Chart.vue";
-import Products from "./Products.vue";
-import Users from "./Users.vue";
+import Categories from './Categories.vue';
+import Chart from './Chart.vue';
+import MainProd from './Products/MainProd.vue';
+import Users from './Users.vue';
 
 export default {
-	name: "AdminView",
+	name: 'AdminView',
 	components: {
 		Categories,
 		Chart,
-		Products,
+		MainProd,
 		Users,
 	},
 	data() {
 		return {
 			Data: [
-				{ name: "Users", val: true },
-				{ name: "Categories", val: false },
-				{ name: "Chart", val: false },
-				{ name: "Products", val: false },
+				{ name: 'Users', val: true },
+				{ name: 'Categories', val: false },
+				{ name: 'Chart', val: false },
+				{ name: 'MainProd', val: false },
 			],
 		};
 	},
