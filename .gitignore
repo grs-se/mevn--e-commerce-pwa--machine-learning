@@ -2,7 +2,7 @@
 node_modules
 /dist
 # /backend
-.git
+/config
 
 
 # local env files
