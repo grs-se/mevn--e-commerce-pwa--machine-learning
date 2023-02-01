@@ -3,10 +3,9 @@ node_modules
 /dist
 # /backend
 /config
-config/
 backend/config
+backend/images
 backendML/config
-
 # local env files
 .env.local
 .env.*.local
