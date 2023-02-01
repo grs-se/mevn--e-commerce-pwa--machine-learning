@@ -65,6 +65,7 @@ const actions = {
 				headers: { 'x-auth-token': Tok },
 			})
 			.then((res) => {
+				console.log('data.ID', data.ID);
 				console.log('Deleted Cat successfully', res.data);
 
 				let newArrDel = state.CategoriesList.filter((x) => {

@@ -32,32 +32,32 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
-	name: "PaginationStore",
+	name: 'PaginationStore',
 	props: {
 		componentName: {
 			type: String,
-			default: "UsersComponent",
+			default: 'UsersComponent',
 		},
 	},
-	emits: ["new-user-data", "new-category-data", "new-products-data"],
+	emits: ['new-user-data', 'new-category-data', 'new-products-data'],
 	data() {
 		return {
-			PageSelected: "",
+			PageSelected: '',
 			PageArray: [],
 		};
 	},
 	computed: {
-		...mapGetters(["AllUsers", "AllCategories", "AllProducts"]),
+		...mapGetters(['AllUsers', 'AllCategories', 'AllProducts']),
 	},
 	mounted() {
 		if (!this.$route.query.page) {
 			this.$router
 				.push({
-					path: "/",
-					name: "Admin",
+					path: '/',
+					name: 'Admin',
 					query: {
 						page: 1,
 					},
@@ -68,28 +68,28 @@ export default {
 		this.Pagination();
 	},
 	methods: {
-		...mapActions(["GetUserByPageNum", "GetCatByPageNum", "GetProdByPageNum"]),
+		...mapActions(['GetUserByPageNum', 'GetCatByPageNum', 'GetProdByPageNum']),
 		ChangePage(page) {
-			if (this.componentName == "UsersComponent") {
+			if (this.componentName == 'UsersComponent') {
 				this.GetUserByPageNum(page);
 				let newData = this.AllUsers;
-				this.$emit("new-user-data", newData, page);
+				this.$emit('new-user-data', newData, page);
 			}
-			if (this.componentName == "CategoriesComponent") {
+			if (this.componentName == 'CategoriesComponent') {
 				this.GetCatByPageNum(page);
 				let newData = this.AllCategories;
-				this.$emit("new-category-data", newData, page);
+				this.$emit('new-category-data', newData, page);
 			}
-			if (this.componentName == "ProductsComponent") {
+			if (this.componentName == 'ProductsComponent') {
 				this.GetProdByPageNum(page);
 				let newData = this.AllProducts;
-				this.$emit("new-products-data", newData, page);
+				this.$emit('new-products-data', newData, page);
 			}
 			this.PageSelected = page;
 			this.$router
 				.push({
-					path: "/",
-					name: "Admin",
+					path: '/',
+					name: 'Admin',
 					query: {
 						page: page,
 					},
@@ -105,17 +105,19 @@ export default {
 		},
 		NextPrevPage(con) {
 			if (con == false && this.PageSelected == 1) {
-				console.log("non");
+				console.log('non');
 			}
 			if (con == false && this.PageSelected !== 1) {
 				this.PageSelected = this.PageSelected - 1;
 				this.ChangePage(this.PageSelected);
 				this.Pagination();
+				console.log('nn', this.PageSelected);
 			}
 			if (con == true) {
 				this.PageSelected = this.PageSelected + 1;
 				this.ChangePage(this.PageSelected);
 				this.Pagination();
+				console.log('nn', this.PageSelected);
 			}
 		},
 	},
