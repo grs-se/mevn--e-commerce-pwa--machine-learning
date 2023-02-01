@@ -11,7 +11,7 @@
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item">Price: {{ data.price }}</li>
 						<li class="list-group-item danger">
-							Category: {{ data.product_categories }}
+							Category: {{ data.prod_categories.name }}
 						</li>
 					</ul>
 					<div class="card-body">
@@ -33,7 +33,7 @@
 			v-if="EDIT"
 			key="EditProd"
 			:prod-id="EditProdID"
-			@save-done="SaveDone"
+			@save-done="SaveDoneFunc"
 		/>
 	</div>
 </template>
@@ -78,7 +78,7 @@ export default {
 			this.EditProdID = prodID;
 			this.EDIT = !this.EDIT;
 		},
-		SaveDone() {
+		SaveDoneFunc() {
 			this.GetProdListFromStore();
 			this.EDIT = !this.EDIT;
 		},

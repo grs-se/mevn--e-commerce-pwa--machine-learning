@@ -52,7 +52,7 @@ const actions = {
 			})
 			.then((res) => {
 				console.log('Result', res.data);
-				commit('SetUserMovementItems', data);
+				commit('SetUserMovementItem', data);
 			});
 	},
 };
@@ -65,8 +65,8 @@ const mutations = {
 	SetUserMovementCart: (state, newusmoveCart) =>
 		(state.UserMovement.Cart = newusmoveCart),
 	// Items
-	SetUserMovementItem: (state, newusmoveItems) =>
-		(state.UserMovement.Items = newusmoveItems),
+	SetUserMovementItem: (state, newusmoveItem) =>
+		state.UserMovement.Items.unshift(newusmoveItem),
 };
 
 export default {

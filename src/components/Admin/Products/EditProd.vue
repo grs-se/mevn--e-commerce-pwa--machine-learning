@@ -3,7 +3,7 @@
 		<form class="d">
 			<div class="form-row">
 				<div class="col-md-12">
-					<img class="ii" :src="Data.product_img" />
+					<img class="ii" :src="DataArr.product_img" />
 
 					<div class="fileUpload">
 						<input
@@ -54,7 +54,7 @@
 						<option
 							v-for="catData in CategoriesList"
 							:key="catData._id"
-							:selected="CheckTheCat(catData._id)"
+							:selected="CheckCat(catData._id)"
 							:value="catData._id"
 						>
 							{{ catData.name }}
@@ -89,7 +89,7 @@ export default {
 	data() {
 		return {
 			DataArr: [],
-			prodID: this.ProdID,
+			prodid: this.prodId,
 			files: null,
 			CategoriesList: [],
 		};
@@ -105,7 +105,7 @@ export default {
 			});
 		},
 		DataFunc: function () {
-			axios.get(`${URL_backend}/products/${this.prodID}`).then((res) => {
+			axios.get(`${URL_backend}/products/${this.prodid}`).then((res) => {
 				let data = {
 					_id: res.data._id,
 					desc: res.data.desc,

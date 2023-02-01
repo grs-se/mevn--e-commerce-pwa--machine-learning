@@ -1,6 +1,7 @@
 <template>
 	<div>
-		<div style="display: flex; justify-content: center">
+		<center>
+			<!-- <div style="display: flex; justify-content: center"> -->
 			<div class="col-sm-12 col-md-9 col-md-offset-1">
 				<table class="table table-hover">
 					<thead>
@@ -88,7 +89,8 @@
 					</tbody>
 				</table>
 			</div>
-		</div>
+			<!-- </div> -->
+		</center>
 	</div>
 </template>
 

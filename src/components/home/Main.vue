@@ -6,7 +6,7 @@
 
 		<center>
 			<div class="col-md-2" style="float: left; margin: 1px 2%">
-				<categories-view @check-cat="CheckCategory" />
+				<categories @check-cat="CheckCategory" />
 			</div>
 			<div class="col-md-3"></div>
 
@@ -103,7 +103,7 @@
 </template>
 
 <script>
-import CategoriesView from './Categories.vue';
+import Categories from './Categories.vue';
 import SugProducts from './SugProducts.vue';
 import { mapActions, mapGetters } from 'vuex';
 
@@ -114,7 +114,7 @@ const URL_backend = `http://localhost:${port}/api`;
 export default {
 	name: 'MainView',
 	components: {
-		CategoriesView,
+		Categories,
 		SugProducts,
 	},
 	data() {

@@ -55,11 +55,16 @@ export default {
 						const shuffled = Arr.sort(() => 0.5 - Math.random());
 						let selected = shuffled.slice(0, 5);
 						this.BigData = selected;
+						console.log('BigData', this.BigData);
 						this.isLoad = true;
 					} else {
 						this.BigData = Arr;
 						this.isLoad = true;
 					}
+					console.log('ar', Arr);
+				})
+				.catch((err) => {
+					console.log('er', err.response.data.msg);
 				});
 		}
 	},

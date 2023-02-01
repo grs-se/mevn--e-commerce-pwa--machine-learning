@@ -4,7 +4,7 @@
 			<div class="card">
 				<img
 					class="card-img-top"
-					:src="ResultItems.product_img"
+					:src="ResultItems.imgSrc"
 					alt="Card image cap"
 				/>
 				<div class="card-body">
