@@ -30,13 +30,17 @@
 					<search-view />
 					<!-- search end -->
 
-					<router-link to="/LoginRegister">
+					<router-link v-if="!auth.isUserLoggedIn" to="/LoginRegister">
 						<button class="btn btn-outline-primary my-2 my-sm-2 m-2">
 							Login | Register
 						</button></router-link
 					>
 
-					<button class="btn btn-outline-danger my-2 my-sm-2 m-2">
+					<button
+						v-if="auth.isUserLoggedIn"
+						class="btn btn-outline-danger my-2 my-sm-2 m-2"
+						@click="LogOutUser"
+					>
 						Logout
 					</button>
 
@@ -46,13 +50,13 @@
 						</button>
 					</router-link>
 
-					<router-link to="/Admin">
+					<router-link v-if="auth.isUserLoggedIn" to="/Admin">
 						<button class="btn btn-outline-danger my-2 my-sm-2 m-2">
 							Admin
 						</button>
 					</router-link>
 
-					<router-link to="/UserProfile">
+					<router-link v-if="auth.isUserLoggedIn" to="/UserProfile">
 						<button class="btn btn-outline-dark my-2 my-sm-2 m-2">
 							Profile
 						</button></router-link
@@ -65,11 +69,13 @@
 </template>
 
 <script>
-import SearchView from "./Search";
+import SearchView from './Search';
+import { mapGetters, mapActions } from 'vuex';
+
 // import Cart from "../Cart/Cart";
 
 export default {
-	name: "HeaderView",
+	name: 'HeaderView',
 	// components: { Cart },
 	components: {
 		SearchView,
@@ -79,6 +85,41 @@ export default {
 			isActive: false,
 			auth: { isUserLoggedIn: false, isUserAdmin: false },
 		};
+	},
+	computed: {
+		...mapGetters(['UserAuth']),
+	},
+	created() {
+		this.GetUserData();
+		// watch data changes
+		this.$store.watch((state) => {
+			console.log('storeChange', state);
+			this.StoreDataChange(state);
+		});
+	},
+	methods: {
+		// vuex get Cat
+		...mapActions(['GetUserAuth', 'SetUserAuth']),
+		//
+		GetUserData() {
+			this.GetUserAuth();
+			//rememper map get has UserAuth as object
+			this.auth.isUserLoggedIn = this.UserAuth.isLoggedIn;
+			this.auth.isUserAdmin = this.UserAuth.isAdmin;
+			console.log('Auth from store', this.auth);
+		},
+		LogOutUser() {
+			let data = { isLoggedIn: false, isAdmin: false };
+			this.auth = { isUserLoggedIn: false, isUserAdmin: false };
+			this.SetUserAuth(data);
+		},
+		StoreDataChange(state) {
+			let data = state.Authentication.isAuthenticated;
+			this.auth = {
+				isUserLoggedIn: data.isLoggedIn,
+				isUserAdmin: data.isAdmin,
+			};
+		},
 	},
 };
 </script>
