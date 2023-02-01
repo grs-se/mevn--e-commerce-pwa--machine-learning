@@ -1,8 +1,9 @@
 <template>
 	<div class="">
 		<div class="">
-			<AddNewProd key="AddNew" />
-			<ProdList key="ProdList" />
+			<AddNewProd key="AddNew" @new-data="RestData" />
+
+			<ProdList key="ProdList" ref="child" />
 		</div>
 	</div>
 </template>
@@ -14,5 +15,11 @@ import ProdList from './ProdList.vue';
 export default {
 	name: 'MainProd',
 	components: { AddNewProd, ProdList },
+	methods: {
+		RestData() {
+			console.log('any main prod');
+			this.$refs.child.GetProdListFromStore();
+		},
+	},
 };
 </script>
