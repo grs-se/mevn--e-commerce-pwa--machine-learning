@@ -4,6 +4,8 @@ node_modules
 # /backend
 /config
 config/
+backend/config
+backendML/config
 
 # local env files
 .env.local
