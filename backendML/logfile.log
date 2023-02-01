@@ -195,3 +195,5 @@
 >>>>>>> Testing
 {"level":"info","message":"Listening on port 5000...","timestamp":"2023-02-01T17:14:53.389Z"}
 {"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-01T17:14:53.434Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2023-02-01T17:18:47.597Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-01T17:18:47.646Z"}
