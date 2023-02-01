@@ -25,7 +25,7 @@ const actions = {
 		});
 	},
 	async GetProdByPageNum({ commit }, pageNum) {
-		axios.get(`${URL_backend}/products/${pageNum}`).then((res) => {
+		axios.get(`${URL_backend}/products/ProdByPage/${pageNum}`).then((res) => {
 			commit('SetProdByPageNum', res.data);
 		});
 	},
@@ -78,7 +78,8 @@ const actions = {
 			.then((res) => {
 				console.log('Deleted product successfully', res.data);
 				let newArrDel = state.ProductsList.filter((x) => {
-					return x._id != data._id;
+					return x.id != data.ID;
+					// return x._id != data._id;
 				});
 				commit('ResetAndDelete', newArrDel);
 			});

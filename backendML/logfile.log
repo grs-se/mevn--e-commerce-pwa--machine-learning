@@ -177,3 +177,12 @@
 {"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-01T13:08:20.194Z"}
 {"level":"info","message":"Listening on port 5000...","timestamp":"2023-02-01T13:16:26.911Z"}
 {"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-01T13:16:26.976Z"}
+{"message":"text index required for $text query","stack":"MongoServerError: text index required for $text query\n    at Connection.onMessage (C:\\Users\\georg\\OneDrive\\Desktop\\mevn--e-commerce-pwa--ml\\frontend\\olex_vue\\backendML\\node_modules\\mongodb\\lib\\cmap\\connection.js:230:30)\n    at MessageStream.<anonymous> (C:\\Users\\georg\\OneDrive\\Desktop\\mevn--e-commerce-pwa--ml\\frontend\\olex_vue\\backendML\\node_modules\\mongodb\\lib\\cmap\\connection.js:61:60)\n    at MessageStream.emit (node:events:513:28)\n    at processIncomingData (C:\\Users\\georg\\OneDrive\\Desktop\\mevn--e-commerce-pwa--ml\\frontend\\olex_vue\\backendML\\node_modules\\mongodb\\lib\\cmap\\message_stream.js:125:16)\n    at MessageStream._write (C:\\Users\\georg\\OneDrive\\Desktop\\mevn--e-commerce-pwa--ml\\frontend\\olex_vue\\backendML\\node_modules\\mongodb\\lib\\cmap\\message_stream.js:33:9)\n    at writeOrBuffer (node:internal/streams/writable:392:12)\n    at _write (node:internal/streams/writable:333:10)\n    at Writable.write (node:internal/streams/writable:337:10)\n    at Socket.ondata (node:internal/streams/readable:766:22)\n    at Socket.emit (node:events:513:28)","ok":0,"code":27,"codeName":"IndexNotFound","level":"error","timestamp":"2023-02-01T14:16:53.492Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2023-02-01T14:20:40.348Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-01T14:20:40.400Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2023-02-01T16:02:21.899Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-01T16:02:21.969Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2023-02-01T16:04:27.734Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-01T16:04:27.784Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2023-02-01T16:04:30.887Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-01T16:04:30.932Z"}

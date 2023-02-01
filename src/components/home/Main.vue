@@ -36,7 +36,7 @@
 									</router-link>
 
 									<button
-										v-if="!item.isInCart"
+										v-if="!item.IsInCart"
 										class="btn btn-danger"
 										@click="RemoveFromCart(item._id, index)"
 									>
@@ -194,9 +194,9 @@ export default {
 				let CartData = JSON.parse(localStorage.getItem('Cart'));
 				let objIndex = CartData.findIndex((obj) => obj.id == element._id);
 				if (objIndex !== -1) {
-					element.isInCart = false;
+					element.IsInCart = false;
 				} else {
-					element.isInCart = true;
+					element.IsInCart = true;
 				}
 				newData.push(element);
 			}
@@ -204,14 +204,14 @@ export default {
 		},
 		AddToCart(id, index) {
 			this.isLoaded = false;
-			this.items[index].isInCart = true;
+			this.items[index].IsInCart = true;
 			this.isLoaded = true;
 			this.SetNewCartItem(id);
 			this.getProdData();
 		},
 		RemoveFromCart(id, index) {
 			this.isLoaded = false;
-			this.items[index].isInCart = false;
+			this.items[index].IsInCart = false;
 			this.isLoaded = true;
 			this.RemoveItemFromCart(id);
 			this.getProdData();

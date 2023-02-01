@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<center>
-			<div class="card">
+			<div v-if="isLoaded" class="card">
 				<img
 					class="card-img-top"
 					:src="ResultItems.imgSrc"
@@ -73,6 +73,8 @@ export default {
 
 		async GetRouteData() {
 			let ProdID = this.$route.query.ID;
+			console.log('specific item', this.$route.query.ID);
+
 			await axios.get(`${URL_backend}/products/${ProdID}`).then((res) => {
 				this.ResetDataAndGetCat(res.data);
 			});
@@ -105,7 +107,8 @@ export default {
 			this.ResultItems.InCart = !this.ResultItems.InCart;
 			let ProdID = this.$route.query.ID;
 
-			if (!this.ResultItems.InCart) {
+			if (this.ResultItems.InCart) {
+				// if (!this.ResultItems.InCart) {
 				this.SetNewCartItem(ProdID);
 				this.isLoaded = true;
 			} else {
