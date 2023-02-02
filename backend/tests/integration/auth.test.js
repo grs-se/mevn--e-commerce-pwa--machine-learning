@@ -2,16 +2,16 @@ const { User } = require('../../models/users');
 const { Categories } = require('../../models/categories');
 
 const request = require('supertest');
-let server = require('../../index');
+let server;
 
 describe('auth middleware', () => {
 	beforeEach(() => {
-		// server = require('../../index');
+		server = require('../../index');
 	});
 
 	afterEach(async () => {
 		await Categories.remove({});
-		server.close;
+		server.close();
 	});
 
 	let token;
