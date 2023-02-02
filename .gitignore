@@ -6,7 +6,10 @@ node_modules
 backend/images
 backendML/config
 backend/config
+backendML/
+backend/
 # local env files
+.env
 .env.local
 .env.*.local
 

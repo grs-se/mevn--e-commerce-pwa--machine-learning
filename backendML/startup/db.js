@@ -1,10 +1,20 @@
 const mongoose = require('mongoose');
 let winston = require('winston');
+const dotenv = require('dotenv');
 
 module.exports = function () {
+	dotenv.config({ path: '../env' });
+
+	const DB = process.env.DATABASE.replace(
+		'<PASSWORD>',
+		process.env.DATABASE_PASSWORD
+	);
+	// const DB_LOCAL = process.env.DATABASE_LOCAL;
+
 	mongoose.set('strictQuery', true);
 	mongoose
-		.connect('mongodb://localhost:27017/olx', {
+		.connect(DB, {
+			// .connect(DB_LOCAL, {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
 			serverSelectionTimeoutMS: 5000,
