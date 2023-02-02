@@ -1,16 +1,15 @@
 const mongoose = require('mongoose');
 let winston = require('winston');
 const dotenv = require('dotenv');
+dotenv.config({ path: '.env' });
+
+const DB = process.env.DATABASE.replace(
+	'<PASSWORD>',
+	process.env.DATABASE_PASSWORD
+);
+// const DB_LOCAL = process.env.DATABASE_LOCAL;
 
 module.exports = function () {
-	dotenv.config({ path: '../env' });
-
-	const DB = process.env.DATABASE.replace(
-		'<PASSWORD>',
-		process.env.DATABASE_PASSWORD
-	);
-	// const DB_LOCAL = process.env.DATABASE_LOCAL;
-
 	mongoose.set('strictQuery', true);
 	mongoose
 		.connect(DB, {

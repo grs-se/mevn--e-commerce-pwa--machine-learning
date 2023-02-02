@@ -1,0 +1,41 @@
+// {
+// 	"eslint.validate": ["javascript", "javascriptvue", "vue"],
+// 	"eslint.format.enable": true,
+// 	"editor.codeActionsOnSave": {
+// 		"source.fixAll.eslint": true
+// 	},
+// 	"workbench.colorTheme": "Default Dark+",
+// 	"editor.fontFamily": "Cascadia Code",
+// 	"editor.fontWeight": "400"
+// }
+
+// {
+// 	"typescript.tsdk": "node_modules\\typescript\\lib"
+// }
+// {
+// 	"css.validate": false,
+// 	"editor.formatOnSave": true,
+// 	"editor.defaultFormatter": "esbenp.prettier-vscode",
+// 	"editor.tabSize": 2,
+// 	"eslint.validate": ["javascript", "vue"],
+// 	"emmet.includeLanguages": {
+// 		"vue-html": "html"
+// 	},
+// 	"[javascript]": {
+// 		"editor.defaultFormatter": "esbenp.prettier-vscode"
+// 	},
+// 	"css.lint.unknownAtRules": "ignore"
+// }
+////////////
+{
+	"css.validate": false,
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.tabSize": 2,
+	// "editor.fontFamily": "Cascadia Code",
+	"eslint.validate": ["javascript", "vue"],
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"workbench.colorTheme": "Winter is Coming (Dark Black - No Italics)"
+}

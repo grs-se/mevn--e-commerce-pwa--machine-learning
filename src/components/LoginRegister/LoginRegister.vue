@@ -184,8 +184,9 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import axios from 'axios';
-const port = process.env.PORT || 3000;
-const URL_backend = `http://localhost:${port}/api`;
+const URL_backend = `https://olx-vue.herokuapp.com/api`;
+// const port = process.env.PORT || 3000;
+// const URL_backend = `http://localhost:${port}/api`;
 
 export default {
 	name: 'LoginRegister',

@@ -1,6 +1,7 @@
 import axios from 'axios';
-const port = process.env.PORT || 5000;
-const URL_backend = `http://localhost:${port}/api`;
+// const port = process.env.PORT || 5000;
+// const URL_backend = `http://localhost:${port}/api`;
+const URL_backend = `https://olx-vue--machine-learning.herokuapp.com/api`;
 
 const state = {
 	UserMovement: {
