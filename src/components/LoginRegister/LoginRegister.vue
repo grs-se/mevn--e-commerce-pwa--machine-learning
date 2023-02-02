@@ -144,7 +144,7 @@
 											<input
 												v-model="LoginData.Email"
 												type="email"
-												class="form-control"
+												class="form-control email-input"
 												placeholder="Email"
 											/>
 										</div>
@@ -155,14 +155,17 @@
 											<input
 												v-model="LoginData.Password"
 												type="password"
-												class="form-control"
+												class="form-control pass-input"
 												placeholder="Password"
 											/>
 										</div>
 									</div>
 								</div>
 								<div class="mt-3">
-									<button class="btn btn-primary" @click="Login($event)">
+									<button
+										class="btn btn-primary login-btn"
+										@click="Login($event)"
+									>
 										Login
 									</button>
 								</div>
