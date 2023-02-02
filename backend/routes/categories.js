@@ -1,6 +1,7 @@
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
 const { Categories, validate } = require('../models/categories');
+const validateObjectId = require('../middleware/validateObjectId');
 
 const express = require('express');
 const router = express.Router();
@@ -23,7 +24,7 @@ router.get('/All', async (req, res) => {
 });
 
 // get one cat by id
-router.get('/:id', async (req, res) => {
+router.get('/:id', validateObjectId, async (req, res) => {
 	let cat = await Categories.findById(req.params.id);
 
 	if (!cat)

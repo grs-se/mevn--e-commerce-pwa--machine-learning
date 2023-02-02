@@ -398,3 +398,167 @@
 {"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T08:56:37.922Z"}
 {"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T08:56:41.099Z"}
 {"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T08:56:41.130Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T08:56:41.864Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T08:56:41.910Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:16:12.567Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:16:12.732Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:16:14.868Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:16:15.085Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:16:21.004Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:16:21.042Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:16:22.165Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:16:22.333Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:16:48.599Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:16:48.659Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:16:50.143Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:16:50.265Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:20:09.282Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:20:09.322Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:20:10.285Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:20:10.358Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:21:19.293Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:21:19.342Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:21:20.525Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:21:20.608Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:21:50.686Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:21:50.816Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:21:52.273Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:21:52.383Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:22:18.490Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:22:18.609Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:22:20.978Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:22:21.101Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:23:54.860Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:23:54.897Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:23:55.900Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:23:55.954Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:24:05.753Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:24:05.878Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:24:07.521Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:24:07.628Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:26:28.569Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:26:28.776Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:26:30.643Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:26:30.738Z"}
+{"message":"Cast to ObjectId failed for value \"1\" (type string) at path \"_id\" for model \"Categories\"","stack":"CastError: Cast to ObjectId failed for value \"1\" (type string) at path \"_id\" for model \"Categories\"\n    at model.Query.exec (C:\\Users\\georg\\OneDrive\\Desktop\\mevn--e-commerce-pwa--ml\\frontend\\olex_vue\\backend\\node_modules\\mongoose\\lib\\query.js:4913:21)\n    at model.Query.Object.<anonymous>.Query.then (C:\\Users\\georg\\OneDrive\\Desktop\\mevn--e-commerce-pwa--ml\\frontend\\olex_vue\\backend\\node_modules\\mongoose\\lib\\query.js:5012:15)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","stringValue":"\"1\"","kind":"ObjectId","value":"1","path":"_id","reason":{},"valueType":"string","level":"error","timestamp":"2023-02-02T09:26:31.054Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:28:08.599Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:28:08.663Z"}
+{"message":"Cast to ObjectId failed for value \"1\" (type string) at path \"_id\" for model \"Categories\"","stack":"CastError: Cast to ObjectId failed for value \"1\" (type string) at path \"_id\" for model \"Categories\"\n    at model.Query.exec (C:\\Users\\georg\\OneDrive\\Desktop\\mevn--e-commerce-pwa--ml\\frontend\\olex_vue\\backend\\node_modules\\mongoose\\lib\\query.js:4913:21)\n    at model.Query.Object.<anonymous>.Query.then (C:\\Users\\georg\\OneDrive\\Desktop\\mevn--e-commerce-pwa--ml\\frontend\\olex_vue\\backend\\node_modules\\mongoose\\lib\\query.js:5012:15)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","stringValue":"\"1\"","kind":"ObjectId","value":"1","path":"_id","reason":{},"valueType":"string","level":"error","timestamp":"2023-02-02T09:28:09.010Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:28:10.340Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:28:10.487Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:29:11.196Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:29:11.269Z"}
+{"message":"Cast to ObjectId failed for value \"1\" (type string) at path \"_id\" for model \"Categories\"","stack":"CastError: Cast to ObjectId failed for value \"1\" (type string) at path \"_id\" for model \"Categories\"\n    at model.Query.exec (C:\\Users\\georg\\OneDrive\\Desktop\\mevn--e-commerce-pwa--ml\\frontend\\olex_vue\\backend\\node_modules\\mongoose\\lib\\query.js:4913:21)\n    at model.Query.Object.<anonymous>.Query.then (C:\\Users\\georg\\OneDrive\\Desktop\\mevn--e-commerce-pwa--ml\\frontend\\olex_vue\\backend\\node_modules\\mongoose\\lib\\query.js:5012:15)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","stringValue":"\"1\"","kind":"ObjectId","value":"1","path":"_id","reason":{},"valueType":"string","level":"error","timestamp":"2023-02-02T09:29:11.525Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:29:12.927Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:29:13.102Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:30:11.980Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:30:12.082Z"}
+{"message":"Cast to ObjectId failed for value \"1\" (type string) at path \"_id\" for model \"Categories\"","stack":"CastError: Cast to ObjectId failed for value \"1\" (type string) at path \"_id\" for model \"Categories\"\n    at model.Query.exec (C:\\Users\\georg\\OneDrive\\Desktop\\mevn--e-commerce-pwa--ml\\frontend\\olex_vue\\backend\\node_modules\\mongoose\\lib\\query.js:4913:21)\n    at model.Query.Object.<anonymous>.Query.then (C:\\Users\\georg\\OneDrive\\Desktop\\mevn--e-commerce-pwa--ml\\frontend\\olex_vue\\backend\\node_modules\\mongoose\\lib\\query.js:5012:15)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","stringValue":"\"1\"","kind":"ObjectId","value":"1","path":"_id","reason":{},"valueType":"string","level":"error","timestamp":"2023-02-02T09:30:12.348Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:30:14.062Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:30:14.226Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:32:29.949Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:32:30.099Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T09:32:32.245Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T09:32:32.347Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:23:00.677Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:23:05.533Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:23:07.816Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:23:07.868Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:23:13.291Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:23:13.457Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:23:15.177Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:23:15.220Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:23:41.071Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:23:41.242Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:23:42.779Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:23:42.837Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:24:36.593Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:24:36.774Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:24:37.986Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:24:38.023Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:24:54.317Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:24:54.500Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:24:56.431Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:24:56.531Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:26:15.259Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:26:18.209Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:26:20.217Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:26:20.337Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:26:39.537Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:26:39.702Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:26:41.084Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:26:41.161Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:27:05.651Z"}
+{"message":"Operation `categories.insertOne()` buffering timed out after 10000ms","stack":"MongooseError: Operation `categories.insertOne()` buffering timed out after 10000ms\n    at Timeout.<anonymous> (C:\\Users\\georg\\OneDrive\\Desktop\\mevn--e-commerce-pwa--ml\\frontend\\olex_vue\\backend\\node_modules\\mongoose\\lib\\drivers\\node-mongodb-native\\collection.js:158:23)\n    at listOnTimeout (node:internal/timers:564:17)\n    at processTimers (node:internal/timers:507:7)","level":"error","timestamp":"2023-02-02T10:27:36.942Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:28:04.686Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:28:04.977Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:28:08.199Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:28:08.267Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:28:44.185Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:28:44.671Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:28:46.681Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:28:46.786Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:28:50.499Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:28:50.560Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:28:51.463Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:28:51.503Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:29:46.077Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:29:46.223Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:29:51.991Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:29:52.130Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:29:55.742Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:29:55.829Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:30:26.378Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:30:26.441Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:30:27.787Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:30:27.876Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:32:07.425Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:32:07.522Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:32:09.791Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:32:09.913Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:32:15.692Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:32:15.807Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:32:18.657Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:32:18.819Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:32:24.589Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:32:24.620Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:32:26.030Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:32:26.106Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:32:33.994Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:32:34.082Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:32:35.601Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:32:35.660Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:33:51.830Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:33:52.045Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:33:54.349Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:33:54.467Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:35:27.510Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:35:27.586Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:35:29.295Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:35:29.384Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:35:34.650Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:35:34.687Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:35:36.252Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:35:36.335Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:35:46.948Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:35:47.034Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:35:48.502Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:35:48.697Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:35:58.151Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:35:58.272Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:36:00.503Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:36:00.628Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:36:13.346Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:36:13.640Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:36:24.196Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:36:24.406Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:38:12.136Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:38:16.601Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:38:19.256Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:38:19.379Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:40:20.843Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:40:21.217Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:40:25.642Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:40:25.742Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2023-02-02T10:40:38.855Z"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2023-02-02T10:40:38.989Z"}
