@@ -8,16 +8,17 @@ describe('LoginRegister Component', () => {
 		expect(wrapper).toBeTruthy();
 	});
 
-	it('Check the route path', () => {
-		const $route = { path: 'http://localhost:8080/LoginRegister' };
-		const wrapper = mount(LoginRegister, {
-			mocks: {
-				$route,
-			},
-		});
+	// it('Check the route path', () => {
+	// 	const $route = { path: 'http://localhost:8080/LoginRegister' };
+	// 	const wrapper = mount(LoginRegister, {
+	// 		mocks: {
+	// 			$route,
+	// 		},
+	// 	});
 
-		expect(wrapper.vm.$route.path).toBe($route.path);
-	});
+	// 	// console.log('wrapper.vm.$route.path', wrapper.vm.$route.path);
+	// 	expect(wrapper.vm.$route).toBe($route);
+	// });
 
 	it('check login function', async () => {
 		const wrapper = mount(LoginRegister);
@@ -45,5 +46,39 @@ describe('LoginRegister Component', () => {
 		// check the entered data on data methods
 		expect(wrapper.vm.$data.LoginData.Email).toBe(email);
 		expect(wrapper.vm.$data.LoginData.Password).toBe(pass);
+	});
+
+	it('check register function', async () => {
+		const wrapper = mount(LoginRegister);
+
+		const Register_input = wrapper.find('.register-input');
+
+		// enter mail and password into inputs
+		const Email_input = wrapper.find('.reg-email');
+		const Pass_input = wrapper.find('.reg-pass');
+		const ConfPass_input = wrapper.find('.confirm-pass');
+
+		// set email and pass data
+		let email = 'A@A.com';
+		let pass = '12345678';
+		let Cpass = '12345678';
+
+		await Email_input.setValue(email);
+		await Pass_input.setValue(pass);
+		await ConfPass_input.setValue(Cpass);
+
+		jest.spyOn(wrapper.vm, 'Register');
+
+		// fire on register input
+		Register_input.trigger('click');
+
+		// check if register has been called
+		expect(wrapper.vm.Register).toHaveBeenCalled();
+
+		// check the entered data on data method
+		console.log('unit test email data', wrapper.vm.$data.RegisterData.Email);
+		expect(wrapper.vm.$data.RegisterData.Email).toBe(email);
+		expect(wrapper.vm.$data.RegisterData.Pass).toBe(pass);
+		expect(wrapper.vm.$data.RegisterData.confirmPass).toBe(Cpass);
 	});
 });

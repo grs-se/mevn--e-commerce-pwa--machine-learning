@@ -45,7 +45,7 @@
 											<input
 												v-model="RegisterData.Email"
 												type="email"
-												class="form-control"
+												class="form-control reg-email"
 												placeholder="Email"
 											/>
 										</div>
@@ -86,8 +86,8 @@
 											<input
 												v-model="RegisterData.Pass"
 												type="password"
-												class="form-control"
-												placeholder="Password"
+												class="form-control reg-pass"
+												placeholder="Password "
 											/>
 										</div>
 									</div>
@@ -97,8 +97,8 @@
 											<input
 												v-model="RegisterData.confirmPass"
 												type="password"
-												class="form-control"
-												placeholder="Confirm Password"
+												class="form-control confirm-pass"
+												placeholder="Confirm Password "
 											/>
 										</div>
 									</div>
@@ -114,7 +114,10 @@
 									</div>
 								</div>
 								<div class="mt-3">
-									<button class="btn btn-primary" @click="Register($event)">
+									<button
+										class="btn btn-primary register-input"
+										@click="Register($event)"
+									>
 										Register
 									</button>
 								</div>
